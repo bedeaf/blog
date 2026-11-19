@@ -1,13 +1,13 @@
 ---
 title: "Yazar"
-description: "Blog of Linkola'nın yazarı"
+description: "bedeaf'in yazarı"
 draft: false
 url: "/author/"
 ---
 
 ![Yazar, maskeli profil görseli](/author-mask.jpg)
 
-Bilgisayar mühendisliği öğrencisiyim. Linux, ağ teknolojileri, tersine mühendislik ve sistemlerin nasıl çalıştığıyla ilgileniyorum.
+Ben bedeaf. Linux, tersine mühendislik ve sistemlerin arka planda nasıl çalıştığıyla uğraşıyorum.
 
 Bu blogda öğrendiklerimi, yaptığım deneyleri ve çözdüğüm problemleri paylaşıyorum.
 

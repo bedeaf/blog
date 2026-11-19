@@ -58,7 +58,7 @@ test('related posts exclude self and non-post pages, and RSS is reachable in nav
 });
 
 async function readingDOM(html, t) {
-  const dom = browserDOM(html, 'https://blog.linkola.workers.dev/posts/test/', undefined, t);
+  const dom = browserDOM(html, 'https://bedeaf.pages.dev/posts/test/', undefined, t);
   dom.run(await readFile('assets/js/reading.js', 'utf8'));
   const dialog = dom.document.querySelector('.image-lightbox');
   if (dialog) Object.defineProperties(dialog, {
@@ -102,7 +102,7 @@ const articles = [
 ];
 async function searchDOM(fetch, t) {
   const html = await readFile(join(output, 'search/index.html'), 'utf8');
-  const dom = browserDOM(html, 'https://blog.linkola.workers.dev/search/', fetch, t);
+  const dom = browserDOM(html, 'https://bedeaf.pages.dev/search/', fetch, t);
   dom.run(await readFile('themes/PaperMod/assets/js/fuse.basic.min.js', 'utf8'));
   dom.run(await readFile('assets/js/fastsearch.js', 'utf8'));
   return dom;

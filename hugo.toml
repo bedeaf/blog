@@ -1,6 +1,6 @@
 
-baseURL = "https://blog.linkola.workers.dev/"
-title = "Blog of Linkola"
+baseURL = "https://bedeaf.pages.dev/"
+title = "bedeaf"
 theme = "PaperMod"
 
 defaultContentLanguage = "tr"
@@ -31,7 +31,7 @@ enableRobotsTXT = true
   ShowPostNavLinks = true
   ShowBreadCrumbs = false
 
-  description = "Computer & Network Engineering ve Reverse Engineering alanında writeuplar ve tutorialler."
+  description = "0x00BEDEAF · Tersine mühendislik, Linux ve binary analiz üzerine writeup'lar ve notlar."
 
 [menus]
   [[menus.main]]

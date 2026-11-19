@@ -15,7 +15,7 @@ try {
   const page = await browser.newPage({ viewport:{width:1280,height:900} });
   const errors=[]; page.on('pageerror',error=>errors.push(error.message));
   await page.route('https://challenges.cloudflare.com/**',route=>route.fulfill({contentType:'text/javascript',body:'window.turnstile={reset(){}};'}));
-  await page.route('https://blog.linkola.workers.dev/**',async route=>{
+  await page.route('https://bedeaf.pages.dev/**',async route=>{
     const path=decodeURIComponent(new URL(route.request().url()).pathname);
     if(path==='/api/comments')return route.fulfill({contentType:'application/json',body:'{"comments":[]}'});
     let file=resolve(root,'.'+path);
@@ -29,7 +29,7 @@ try {
       return route.fulfill({status:404,body:''});
     }
   });
-  await page.goto('https://blog.linkola.workers.dev/posts/orta-seviye-crackme-cozumu/');
+  await page.goto('https://bedeaf.pages.dev/posts/orta-seviye-crackme-cozumu/');
   const toggle=page.locator('.code-fold-toggle').first();
   assert.equal(await toggle.getAttribute('aria-expanded'),'false');
   await toggle.click();assert.equal(await toggle.getAttribute('aria-expanded'),'true');
@@ -46,7 +46,7 @@ try {
     assert.ok(await page.locator('.image-lightbox').evaluate(el=>el.getBoundingClientRect().right<=innerWidth));
     await page.getByRole('button',{name:'Görseli kapat'}).click();
   }
-  await page.goto('https://blog.linkola.workers.dev/search/?q=radare2');
+  await page.goto('https://bedeaf.pages.dev/search/?q=radare2');
   await page.locator('.search-result').first().waitFor();
   await page.getByLabel('Aranacak kelime').fill('wireshark');
   await page.waitForFunction(()=>document.querySelector('#searchResults').textContent.toLowerCase().includes('wireshark'));

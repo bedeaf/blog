@@ -1,11 +1,12 @@
 {
-  "name": "linkola-blog",
+  "name": "bedeaf-blog",
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "hugo --minify",
+    "build": "hugo --minify && cp worker/index.js public/_worker.js",
     "test": "node --test --test-isolation=none tests/reading.test.mjs",
-    "test:browser": "node tests/reading.browser.mjs"
+    "test:browser": "node tests/reading.browser.mjs",
+    "deploy": "npm run build && npx wrangler@4 pages deploy"
   },
   "devDependencies": {
     "playwright-core": "1.58.2",

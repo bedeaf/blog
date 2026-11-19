@@ -1,4 +1,4 @@
-/* Blog of Linkola: published-relative dates (not estimated reading time). */
+/* bedeaf: published-relative dates (not estimated reading time). */
 (() => {
   "use strict";
   const DAY = 86400000;
