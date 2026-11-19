@@ -84,3 +84,7 @@ enableRobotsTXT = true
   [[related.indices]]
     name = "categories"
     weight = 70
+
+[params.homeInfoParams]
+  Title = "bedeaf"
+  Content = "Tersine mühendislik, Linux ve binary analiz üzerine writeup'lar ve notlar."

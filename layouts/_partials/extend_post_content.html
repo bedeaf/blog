@@ -2,6 +2,8 @@
   {{- /* The footer is cached across sections; keep post-only scripts in this hook. */ -}}
   {{- $reading := resources.Get "js/reading.js" | minify | fingerprint -}}
   <script defer src="{{ $reading.RelPermalink }}" integrity="{{ $reading.Data.Integrity }}"></script>
+  <div class="bd-progress" aria-hidden="true"></div>
+  <script defer src="{{ "js/bd-progress.js" | relURL }}"></script>
   {{- $posts := where site.RegularPages "Section" "posts" -}}
   {{- $related := ($posts.Related .) | first 3 -}}
   {{- $title := "İlgili yazılar" -}}

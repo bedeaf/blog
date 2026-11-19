@@ -1,0 +1,10 @@
+{{- /* bedeaf hero: the name decodes from hex digits, then the dword lands in memory. */ -}}
+{{- with site.Params.homeInfoParams }}
+<section class="bd-hero">
+  <p class="bd-asm" aria-hidden="true"><span class="bd-op">mov</span> eax, <span class="bd-imm">0x00BEDEAF</span></p>
+  <h1 class="bd-name" aria-label="BEDEAF">{{ range (split "BEDEAF" "") }}<span>{{ . }}</span>{{ end }}</h1>
+  <p class="bd-bytes" aria-hidden="true"><span class="bd-addr">[rsp]</span> <span class="bd-b">af</span> <span class="bd-b">de</span> <span class="bd-b">be</span> <span class="bd-b bd-zero">00</span></p>
+  <p class="bd-tag">{{ .Content | markdownify }}</p>
+</section>
+<script defer src="{{ "js/bd-hero.js" | relURL }}"></script>
+{{- end -}}

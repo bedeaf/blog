@@ -91,3 +91,60 @@ code, pre, kbd, samp { font-family: var(--mono); }
 .chroma .hl { background-color: #202020; }
 .chroma .lnt, .chroma .ln, .chroma .w { color: #404040; }
 .post-content blockquote > :last-child { margin-bottom: 0; }
+
+/* ---------- attention, kept quiet ---------- */
+
+/* hero: the name decodes from hex, the dword lands in memory */
+.bd-hero { position: relative; overflow: hidden; margin: 40px 0 56px; padding: 56px 0 44px; text-align: center; isolation: isolate; }
+.bd-hero::before { content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(100deg, transparent 30%, rgb(255 255 255 / .06) 50%, transparent 70%) no-repeat;
+  background-size: 50% 100%; background-position: -60% 0; animation: bd-sweep 9s ease-in-out 2.4s infinite;
+  -webkit-mask-image: linear-gradient(transparent, #000 30%, #000 70%, transparent); mask-image: linear-gradient(transparent, #000 30%, #000 70%, transparent); }
+@keyframes bd-sweep { 0% { background-position: -60% 0; } 60%, 100% { background-position: 160% 0; } }
+.bd-asm { margin: 0 0 6px; color: #606060; font: 500 14px/1.4 var(--mono); letter-spacing: .5px; }
+.bd-asm .bd-op { color: #808080; } .bd-asm .bd-imm { color: #dfdfdf; }
+.bd-name { margin: 0; font-size: clamp(64px, 14vw, 132px); font-weight: 800; line-height: 1; letter-spacing: 0; color: #efefef; }
+.bd-name span { display: inline-block; width: .8em; text-align: center; transition: color .2s; }
+.bd-name .bd-scr { color: #404040; }
+.bd-bytes { margin: 18px 0 0; font: 500 17px/1.4 var(--mono); color: #dfdfdf; word-spacing: 6px; }
+.bd-bytes .bd-addr { color: #606060; margin-right: 6px; } .bd-bytes .bd-zero { color: #808080; }
+.bd-run .bd-b { opacity: 0; }
+.bd-done .bd-b { animation: bd-pop .25s ease both; }
+.bd-done .bd-b:nth-of-type(2) { animation-delay: .18s; } .bd-done .bd-b:nth-of-type(3) { animation-delay: .36s; } .bd-done .bd-b:nth-of-type(4) { animation-delay: .54s; }
+@keyframes bd-pop { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+.bd-tag { margin: 26px auto 0; max-width: 560px; color: var(--secondary); font-size: 17px; line-height: 1.7; }
+
+/* post list: rise in, white edge and arrow on hover */
+.post-entry { position: relative; transition: background .2s ease; animation: bd-rise .5s ease both; }
+.post-entry:nth-of-type(2) { animation-delay: .06s; } .post-entry:nth-of-type(3) { animation-delay: .12s; }
+.post-entry:nth-of-type(4) { animation-delay: .18s; } .post-entry:nth-of-type(5) { animation-delay: .24s; }
+.post-entry:nth-of-type(n+6) { animation-delay: .3s; }
+@keyframes bd-rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.post-entry::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: #ffffff; transform: scaleY(0); transform-origin: top; transition: transform .25s ease; }
+.post-entry:hover::before, .post-entry:focus-within::before { transform: scaleY(1); }
+.post-entry .entry-header h2::after { content: "→"; display: inline-block; margin-left: .35em; opacity: 0; transform: translateX(-8px); transition: opacity .2s ease, transform .2s ease; color: #808080; }
+.post-entry:hover .entry-header h2::after, .post-entry:focus-within .entry-header h2::after { opacity: 1; transform: none; }
+
+/* sections are numbered in hex */
+@counter-style bd-hex { system: numeric; symbols: "0" "1" "2" "3" "4" "5" "6" "7" "8" "9" "A" "B" "C" "D" "E" "F"; pad: 2 "0"; }
+.post-content { counter-reset: bd-h2; }
+.post-content h2 { counter-increment: bd-h2; }
+.post-content h2::before { content: "0x" counter(bd-h2, bd-hex); display: inline-block; margin-right: .6em; color: #505050; font-size: .55em; font-weight: 600; letter-spacing: .5px; vertical-align: .25em; font-variant-numeric: tabular-nums; }
+
+/* links: underline fills from left on hover */
+.post-content a:not(.anchor) { text-decoration: none;
+  background: linear-gradient(#ffffff, #ffffff) 0 100% / 0 1px no-repeat, linear-gradient(#404040, #404040) 0 100% / 100% 1px no-repeat;
+  transition: background-size .25s ease; padding-bottom: 1px; }
+.post-content a:not(.anchor):hover { background-size: 100% 1px, 100% 1px; }
+
+/* reading progress */
+.bd-progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; background: #ffffff; transform: scaleX(0); transform-origin: left; z-index: 100; pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bd-hero::before, .post-entry { animation: none; }
+  .bd-run .bd-b { opacity: 1; }
+}
+@media (max-width: 600px) {
+  .bd-hero { margin: 24px 0 36px; padding: 36px 0 28px; }
+  .bd-name span { width: .78em; }
+}
