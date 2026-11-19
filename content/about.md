@@ -1,6 +1,6 @@
 ---
 title: "Hakkımda"
-Açıklama: "Linux, tersine mühendislik ve bilgisayarların arka planda kalan yönü."
+description: "Linux, tersine mühendislik ve bilgisayarların arka planda kalan yönü."
 draft: false
 ---
 
