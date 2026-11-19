@@ -52,21 +52,23 @@
     const hood = outfit === 1;
     const longHair = !hood && mix(6) % 3 === 0;
     const bun = !hood && !longHair && mix(7) % 7 === 0;
-    const tops = [
-      "M15 27Q14 8 32 7Q50 8 49 27Q46 15 32 14Q18 15 15 27Z",
-      "M15 26Q15 7 33 7Q49 8 49 25Q43 13 34 15Q27 12 22 17Q18 20 15 26Z",
-      "M16 25Q16 9 32 8Q48 9 48 25Q40 12 32 13Q24 12 16 25Z",
-      "M14 28Q12 10 26 9Q31 4 39 8Q52 10 50 28Q47 16 39 15Q35 18 29 15Q20 16 14 28Z",
-      "M16.5 23Q17 7.5 32 7.5Q47 7.5 47.5 23Q40 14.5 32 14.5Q24 14.5 16.5 23Z",
-      "M15 27Q13 9 32 7Q51 9 49 27Q45 17 38 16Q36 13 32 16Q27 13 24 17Q18 18 15 27Z"
+    // Hair is never drawn freehand: it is the skull ellipse cut by a hairline, so it can
+    // never spill outside the head. Each entry is the region *above* a hairline.
+    const hairlines = [
+      "M0 0H64V27Q48 14.5 32 14.5Q16 14.5 0 27Z",
+      "M0 0H64V26Q46 12 35 15Q25 12.5 0 26Z",
+      "M0 0H64V22Q48 12.5 32 12.5Q16 12.5 0 22Z",
+      "M0 0H64V28Q50 16 41 17L37 14L32 18L27 14L23 17Q14 16 0 28Z",
+      "M0 0H64V24Q47 15 41 11.5Q32 15.5 23 11.5Q17 15 0 24Z",
+      "M0 0H64V27Q52 13 38 13Q30 17 22 15Q12 18 0 27Z"
     ];
-    const top = tops[mix(5) % tops.length];
+    const hairline = hairlines[mix(5) % hairlines.length];
     const ink = "#141414";
-    let svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="#000"/>';
+    let svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><clipPath id="skull"><ellipse cx="32" cy="25" rx="17" ry="17"/></clipPath></defs><rect width="64" height="64" fill="#000"/>';
     // 1. layers behind the head
     if (hood) svg += '<path d="M12 60Q7 38 10.5 23Q14.5 4.5 32 4Q49.5 4.5 53.5 23Q57 38 52 60Z" fill="' + shade + '"/>';
-    if (longHair) svg += '<path d="M14.5 30Q12 10 32 8Q52 10 49.5 30Q51 42 52 54Q46 50 45 38L19 38Q18 50 12 54Q13 42 14.5 30Z" fill="' + hair + '"/>';
-    if (bun) svg += '<circle cx="32" cy="7" r="5" fill="' + hair + '"/>';
+    if (longHair) svg += '<path d="M15 25Q15 8 32 8Q49 8 49 25V50Q46 47.5 45 40H19Q18 47.5 15 50Z" fill="' + hair + '"/>';
+    if (bun) svg += '<circle cx="32" cy="8.5" r="4.2" fill="' + hair + '"/>';
     // 2. garment and neck
     svg += '<path d="M6 64C8 52 18 47.5 32 47.5S56 52 58 64Z" fill="' + cloth + '"/>';
     svg += '<path d="M27.5 44H36.5V49Q32 51.5 27.5 49Z" fill="' + skin + '"/>';
@@ -88,7 +90,7 @@
       + '<path d="M30.9 48.2Q32 54 33.1 48.2Q32 48.9 30.9 48.2Z" fill="' + ink + '"/>';
     // 5. what sits in front of the mask: hood opening or hair
     if (hood) svg += '<path d="M15 44Q11.5 13 32 9.5Q52.5 13 49 44" fill="none" stroke="' + cloth + '" stroke-width="3.2" stroke-linecap="round"/>';
-    else svg += '<path d="' + top + '" fill="' + hair + '"/>';
+    else svg += '<path d="' + hairline + '" clip-path="url(#skull)" fill="' + hair + '"/>';
     svg += '</svg>';
     return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
   }
