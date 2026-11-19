@@ -4,7 +4,7 @@
 
   <form id="comment-form" autocomplete="off">
     <h3>Yorum bırak</h3>
-    <p class="form-help">Yorumun onaylandıktan sonra yayımlanır. E-posta adresi gerekmez.</p>
+    <p class="form-help">Yorumun onaylandıktan sonra yayımlanır. E-posta adresi gerekmez. <code>`kod`</code> ve <code>```</code> blokları desteklenir.</p>
     <label for="c-author">İsim</label>
     <input type="text" id="c-author" maxlength="40" placeholder="Görünen adın" required>
     <label for="c-body">Yorum</label>
@@ -95,6 +95,30 @@
     return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
   }
 
+  // Comments may contain `inline code` and ```fenced blocks```. Built from DOM nodes only:
+  // everything else stays plain text, so no markup from visitors is ever interpreted.
+  function renderRich(el, raw) {
+    const src = String(raw || "");
+    const fence = /```[a-zA-Z0-9_+-]*\n?([\s\S]*?)```/g;
+    let last = 0, m;
+    const inline = (text) => {
+      const parts = text.split(/`([^`\n]+)`/);
+      parts.forEach((p, i) => {
+        if (!p) return;
+        if (i % 2) { const code = document.createElement("code"); code.textContent = p; el.append(code); }
+        else el.append(document.createTextNode(p));
+      });
+    };
+    while ((m = fence.exec(src))) {
+      inline(src.slice(last, m.index));
+      const pre = document.createElement("pre"), code = document.createElement("code");
+      code.textContent = m[1].replace(/\n$/, "");
+      pre.append(code); el.append(pre);
+      last = fence.lastIndex;
+    }
+    inline(src.slice(last));
+  }
+
   function renderAuthorReply(reply) {
     const wrap = document.createElement("section");
     wrap.className = "comment-reply author-reply";
@@ -125,9 +149,9 @@
     const date = document.createElement("small");
     date.className = "comment-date";
     if (Number(reply.created_at) > 0) date.textContent = new Date(Number(reply.created_at) * 1000).toLocaleString("tr-TR");
-    const body = document.createElement("p");
+    const body = document.createElement("div");
     body.className = "comment-body";
-    body.textContent = String(reply.body || "");
+    renderRich(body, reply.body);
     line.append(name, mark);
     identity.append(line, date);
     head.append(avatar, identity);
@@ -174,9 +198,9 @@
         time.className = "comment-date";
         const when = Number(c.created_at);
         if (Number.isFinite(when) && when > 0) time.textContent = new Date(when * 1000).toLocaleString("tr-TR");
-        const text = document.createElement("p");
+        const text = document.createElement("div");
         text.className = "comment-body";
-        text.textContent = c.body || "";
+        renderRich(text, c.body);
         identity.append(head,time);
         meta.append(avatar,identity);
         box.append(meta,text);

@@ -114,6 +114,38 @@ async function createComment(request, env) {
   return json({ ok: true, status: "pending" }, 201);
 }
 
+// Privacy-friendly view counter: no cookies, no third parties. A visitor counts once per
+// post per day; only a salted daily hash is kept, and those rows expire after two days.
+const BOT_RE = /bot|crawl|spider|slurp|preview|curl|wget|python|headless|monitor/i;
+async function views(request, env, url) {
+  if (request.method === "GET") {
+    const slug = url.searchParams.get("slug") || "";
+    if (!SLUG_RE.test(slug)) return json({ error: "bad_slug" }, 400);
+    const row = await env.DB.prepare("SELECT count FROM views WHERE slug = ?1").bind(slug).first();
+    return json({ views: row ? row.count : 0 });
+  }
+  if (request.method !== "POST") return json({ error: "method_not_allowed" }, 405);
+  if (request.headers.get("origin") !== url.origin) return json({ error: "bad_origin" }, 403);
+  let slug = "";
+  try { slug = String((JSON.parse(await request.text()) || {}).slug || ""); } catch { return json({ error: "bad_json" }, 400); }
+  if (!SLUG_RE.test(slug)) return json({ error: "bad_slug" }, 400);
+  const read = async () => {
+    const row = await env.DB.prepare("SELECT count FROM views WHERE slug = ?1").bind(slug).first();
+    return json({ views: row ? row.count : 0 });
+  };
+  if (BOT_RE.test(request.headers.get("user-agent") || "")) return read();
+  const page = await env.ASSETS.fetch(new Request(new URL(slug, url.origin)));
+  if (page.status !== 200) return json({ error: "unknown_post" }, 404);
+  const day = Math.floor(Date.now() / 86400000);
+  const key = await sha256Hex((request.headers.get("cf-connecting-ip") || "") + env.IP_SALT + slug + day);
+  const hit = await env.DB.prepare("INSERT OR IGNORE INTO view_hits (key, day) VALUES (?1, ?2)").bind(key, day).run();
+  if (hit.meta && hit.meta.changes) {
+    await env.DB.prepare("INSERT INTO views (slug, count) VALUES (?1, 1) ON CONFLICT(slug) DO UPDATE SET count = count + 1").bind(slug).run();
+    if (Math.random() < 0.05) await env.DB.prepare("DELETE FROM view_hits WHERE day < ?1").bind(day - 1).run();
+  }
+  return read();
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -123,6 +155,7 @@ export default {
       if (request.method === "POST") return createComment(request, env);
       return json({ error: "method_not_allowed" }, 405);
     }
+    if (url.pathname === "/api/views") return views(request, env, url);
     if (url.pathname.startsWith("/api/")) return json({ error: "not_found" }, 404);
 
     return env.ASSETS.fetch(request);
