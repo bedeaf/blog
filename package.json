@@ -3,11 +3,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node tools/oss.mjs && hugo --minify && cp worker/index.js public/_worker.js",
-    "test": "node --test --test-isolation=none tests/reading.test.mjs tests/oss.test.mjs",
+    "build": "node tools/prof.mjs && hugo --minify && cp worker/index.js public/_worker.js",
+    "test": "node --test --test-isolation=none tests/reading.test.mjs tests/prof.test.mjs",
     "test:browser": "node tests/reading.browser.mjs",
     "deploy": "npm run build && npx wrangler@4 pages deploy",
-    "oss": "node tools/oss.mjs"
+    "prof": "node tools/prof.mjs"
   },
   "devDependencies": {
     "playwright-core": "1.58.2",

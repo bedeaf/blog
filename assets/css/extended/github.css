@@ -1,0 +1,89 @@
+/* /github: profile, contribution calendar and upstream PRs, on the site's gray
+   ramp. Surfaces are separated by background steps, never borders; square corners. */
+
+/* minmax(0, 1fr): without it the calendar's min-width widens the page on phones
+   instead of scrolling inside its own strip. */
+.gh { display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; margin-top: 8px; }
+
+/* profile */
+.gh-profile { display: grid; grid-template-columns: 96px 1fr; gap: 24px; align-items: start; }
+.gh-avatar { width: 96px; height: 96px; background: var(--entry); object-fit: cover; }
+.gh-name { margin: 0; color: #efefef; font-size: 34px; font-weight: 800; line-height: 1.1; letter-spacing: -.5px; }
+.gh-handle { margin: 4px 0 0; color: var(--secondary); font-size: 17px; }
+.gh-handle a { color: var(--primary); text-decoration: none; }
+.gh-handle a:hover { color: #ffffff; }
+.gh-tag { margin-left: 10px; color: #808080; font: 500 14px var(--mono); }
+.gh-bio { margin: 12px 0 0; color: var(--content); font-size: 16px; line-height: 1.6; }
+.gh-facts { display: flex; flex-wrap: wrap; gap: 4px 18px; margin: 10px 0 0; color: var(--secondary); font-size: 14px; }
+.gh-facts b, .gh-breakdown b { color: var(--primary); font-weight: 600; }
+
+/* numbers */
+.gh-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 0; }
+.gh-stats div { background: var(--entry); padding: 18px 20px; }
+.gh-stats dt { color: var(--secondary); font-size: 13px; }
+.gh-stats dd { margin: 4px 0 0; color: #efefef; font: 700 32px/1.1 var(--sans); letter-spacing: -.5px; }
+.gh-stats small { color: var(--secondary); font-size: 14px; font-weight: 500; letter-spacing: 0; }
+
+.gh-h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin: 0 0 12px;
+  color: var(--primary); font-size: 20px; font-weight: 700; }
+.gh-h-meta { color: var(--secondary); font-size: 14px; font-weight: 400; }
+
+/* contribution calendar: fluid week columns on wide screens; on narrow ones the
+   strip scrolls, and direction: rtl makes it open on the most recent weeks. */
+.gh-card { background: var(--entry); padding: 20px 22px; }
+.gh-card .gh-h { margin-bottom: 14px; }
+.gh-cal-scroll { overflow-x: auto; direction: rtl; scrollbar-width: thin; scrollbar-color: #303030 transparent; }
+.gh-cal-inner { direction: ltr; min-width: calc(2rem + var(--weeks) * 11px); }
+.gh-months, .gh-cal { display: grid; gap: 2px;
+  grid-template-columns: 2rem repeat(var(--weeks), minmax(9px, 1fr)); }
+.gh-months { height: 16px; margin-bottom: 4px; color: #808080; font-size: 11px; line-height: 16px; }
+.gh-months span { grid-row: 1; white-space: nowrap; }
+.gh-cal { grid-template-rows: repeat(7, auto); grid-auto-flow: column; }
+.gh-cal span { color: #606060; font-size: 10px; line-height: 1; align-self: center; }
+.gh-cal i, .gh-legend i { display: block; aspect-ratio: 1; background: #161616; }
+.gh-cal i.gh-pad { background: transparent; }
+.l1 { background: #3a3a3a !important; } .l2 { background: #6a6a6a !important; }
+.l3 { background: #a0a0a0 !important; } .l4 { background: #efefef !important; }
+.gh-cal i:hover { outline: 1px solid #ffffff; outline-offset: 0; }
+.gh-cal-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; margin-top: 14px; }
+.gh-breakdown { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: 0; color: var(--secondary); font-size: 14px; }
+.gh-legend { display: flex; align-items: center; gap: 3px; flex: none; margin: 0; color: #606060; font-size: 12px; }
+.gh-legend i { width: 10px; }
+.gh-legend span:first-child { margin-right: 3px; } .gh-legend span:last-child { margin-left: 3px; }
+
+/* upstream pull requests */
+.gh-repo { background: var(--entry); padding: 20px 22px; }
+.gh-repo + .gh-repo { margin-top: 8px; }
+.gh-repo-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
+.gh-repo-head a { color: var(--primary); font-weight: 600; text-decoration: none; }
+.gh-repo-head a:hover { color: #ffffff; }
+.gh-meta { color: var(--secondary); font-size: 13px; }
+.gh-desc { margin: 6px 0 0; color: var(--secondary); font-size: 15px; line-height: 1.6; }
+.gh-prs { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 2px; }
+.gh-pr { display: grid; grid-template-columns: 4.75rem 1fr auto; align-items: baseline; gap: 4px 12px;
+  background: #111111; padding: 10px 14px; }
+.gh-pr:hover { background: #171717; }
+.gh-title { color: var(--content); text-decoration: none; }
+.gh-pr:hover .gh-title { color: #ffffff; }
+.gh-ref { grid-column: 2; color: #606060; font-size: 13px; }
+.gh-ptag { color: #808080; font-family: var(--mono); }
+.gh-pr time { grid-row: 1; grid-column: 3; color: #606060; font-size: 13px; white-space: nowrap; }
+/* The first grid column is fixed, so PR titles line up whatever the state. */
+.gh-state { padding: 2px 0; text-align: center; font: 600 12px/1.5 var(--mono); letter-spacing: .3px; }
+.gh-state.is-merged { background: #dfdfdf; color: #000000; }
+.gh-state.is-open { background: #202020; color: #a0a0a0; }
+
+.gh-updated, .gh-empty { margin: 0; color: #606060; font-size: 13px; }
+.gh-updated a { color: var(--secondary); }
+
+@media (max-width: 560px) {
+  .gh-profile { grid-template-columns: 72px 1fr; gap: 16px; }
+  .gh-avatar { width: 72px; height: 72px; }
+  .gh-name { font-size: 26px; }
+  .gh-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gh-stats dd { font-size: 26px; }
+  .gh-stats div { padding: 14px; }
+  .gh-card, .gh-repo { padding: 16px; }
+  .gh-pr { grid-template-columns: 4.75rem 1fr; }
+  .gh-pr time { grid-row: auto; grid-column: 2; }
+}

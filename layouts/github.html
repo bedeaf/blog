@@ -1,0 +1,92 @@
+{{ define "main" }}
+{{ with $d := hugo.Data.github }}
+<div class="gh">
+  {{ with .profile }}
+  <header class="gh-profile">
+    <img class="gh-avatar" src="{{ .avatar }}&s=192" alt="{{ .login }} profil görseli" width="96" height="96">
+    <div class="gh-who">
+      <h1 class="gh-name">{{ .name }}</h1>
+      <p class="gh-handle"><a href="{{ .url }}">{{ .login }}</a>{{ with .tag }}<span class="gh-tag">{{ . }}</span>{{ end }}</p>
+      {{ with .bio }}<p class="gh-bio">{{ . }}</p>{{ end }}
+      <p class="gh-facts">
+        {{ with .location }}<span>{{ . }}</span>{{ end }}
+        <span><b>{{ .followers }}</b> takipçi · <b>{{ .following }}</b> takip</span>
+        <span>Katılım: {{ time.Format "January 2006" .since }}</span>
+      </p>
+    </div>
+  </header>
+  {{ end }}
+
+  {{ $cal := .calendar }}
+  <dl class="gh-stats">
+    <div><dt>Son bir yılda katkı</dt><dd>{{ with $cal }}{{ lang.FormatNumber 0 .total }}{{ else }}0{{ end }}</dd></div>
+    <div><dt>Aktif gün</dt><dd>{{ with $cal }}{{ .active }}{{ else }}0{{ end }}</dd></div>
+    <div><dt>En uzun seri</dt><dd>{{ with $cal }}{{ .streak.longest }}{{ else }}0{{ end }}<small> gün</small></dd></div>
+    <div><dt>Merge edilen PR</dt><dd>{{ .stats.merged }}</dd></div>
+  </dl>
+
+  {{ with $cal }}
+  <section class="gh-card" aria-labelledby="gh-cal-h">
+    <h2 id="gh-cal-h" class="gh-h">Son bir yıl</h2>
+    <div class="gh-cal-scroll">
+      <div class="gh-cal-inner" style="--weeks: {{ .weeks }}">
+        <div class="gh-months" aria-hidden="true">
+          {{ range .months }}<span style="grid-column: {{ add .week 2 }}">{{ time.Format "Jan" .d }}</span>{{ end }}
+        </div>
+        <div class="gh-cal" role="img" aria-label="Son bir yılda {{ .total }} katkı, {{ .active }} aktif gün">
+          <span></span><span>Pzt</span><span></span><span>Çar</span><span></span><span>Cum</span><span></span>
+          {{ if gt .pad 0 }}{{ range seq .pad }}<i class="gh-pad"></i>{{ end }}{{ end }}
+          {{ range .days }}<i class="l{{ .l }}" title="{{ time.Format ":date_medium" .d }} · {{ .n }} katkı"></i>{{ end }}
+        </div>
+      </div>
+    </div>
+    <div class="gh-cal-foot">
+      <p class="gh-breakdown">
+        {{ with $d.breakdown }}
+        {{ with .commits }}<span><b>{{ . }}</b> commit</span>{{ end }}
+        {{ with .prs }}<span><b>{{ . }}</b> pull request</span>{{ end }}
+        {{ with .reviews }}<span><b>{{ . }}</b> review</span>{{ end }}
+        {{ with .issues }}<span><b>{{ . }}</b> issue</span>{{ end }}
+        {{ with .private }}<span><b>{{ . }}</b> özel katkı</span>{{ end }}
+        {{ end }}
+        {{ with .streak.current }}<span>Şu anki seri: <b>{{ . }}</b> gün</span>{{ end }}
+        {{ with .best }}<span>En yoğun gün: <b>{{ .n }}</b> katkı, {{ time.Format ":date_medium" .d }}</span>{{ end }}
+      </p>
+      <p class="gh-legend" aria-hidden="true"><span>Az</span><i class="l0"></i><i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l4"></i><span>Çok</span></p>
+    </div>
+  </section>
+  {{ end }}
+
+  <section aria-labelledby="gh-up-h">
+    <h2 id="gh-up-h" class="gh-h">Başka projelere katkılar
+      <span class="gh-h-meta">{{ .stats.merged }} merge edildi · {{ .stats.open }} incelemede</span></h2>
+    {{ range .contributions }}
+    <article class="gh-repo">
+      <header class="gh-repo-head">
+        <a href="{{ .url }}">{{ .repo }}</a>
+        <span class="gh-meta">{{ with .language }}{{ . }}{{ end }}{{ with .stars }} · ★ {{ lang.FormatNumber 0 . }}{{ end }}</span>
+      </header>
+      {{ with .description }}<p class="gh-desc">{{ . }}</p>{{ end }}
+      <ul class="gh-prs">
+        {{ range .prs }}
+        <li class="gh-pr">
+          <span class="gh-state is-{{ .state }}">{{ if eq .state "merged" }}merged{{ else }}open{{ end }}</span>
+          <a class="gh-title" href="{{ .url }}">{{ .title }}</a>
+          <span class="gh-ref">#{{ .number }}{{ with .tag }} <span class="gh-ptag">{{ . }}</span>{{ end }}{{ with .merge_minutes }} · {{ if lt . 60 }}{{ . }} dakikada{{ else if lt . 2880 }}{{ div . 60 }} saatte{{ else }}{{ div . 1440 }} günde{{ end }} merge edildi{{ end }}</span>
+          <time datetime="{{ .date }}">{{ time.Format ":date_medium" .date }}</time>
+        </li>
+        {{ end }}
+      </ul>
+    </article>
+    {{ else }}
+    <p class="gh-empty">Henüz başka bir projeye gönderilmiş PR yok.</p>
+    {{ end }}
+  </section>
+
+  <p class="gh-updated">GitHub'dan derlendi: <time datetime="{{ .generated }}">{{ time.Format ":date_long" .generated }}</time> · <a href="https://github.com/pulls?q=is%3Apr+author%3A{{ .profile.login }}+-user%3A{{ .profile.login }}">tüm PR'lar</a></p>
+</div>
+{{ else }}
+<header class="page-header"><h1>{{ .Title }}</h1></header>
+<p class="gh-empty">Profil verisi henüz derlenmedi.</p>
+{{ end }}
+{{ end }}
