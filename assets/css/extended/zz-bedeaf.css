@@ -1,0 +1,93 @@
+/* bedeaf: monochrome theme matching github.com/bedeaf.
+   Loaded last (zz-), so it overrides custom.css and the theme.
+   Pure black, neutral gray ramp (no blue/purple tint), no borders:
+   surfaces are separated by background steps instead.
+   Body text uses a readable sans; monospace is kept for code only. */
+
+:root, :root[data-theme="dark"], .dark {
+  --theme: #000000;
+  --entry: #0b0b0b;
+  --primary: #dfdfdf;
+  --secondary: #808080;
+  --tertiary: #202020;
+  --content: #bfbfbf;
+  --code-bg: #171717;
+  --code-block-bg: #0b0b0b;
+  --border: transparent;
+  --accent: #ffffff;
+  --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "JetBrains Mono", "Fira Code", "Liberation Mono", monospace;
+}
+
+body { background: #000; font-family: var(--sans); font-feature-settings: "kern", "liga"; -webkit-font-smoothing: antialiased; }
+.logo, .menu, .entry-footer, .post-meta, .search-meta, .comment-date, #yorumlar .comment-date { font-family: var(--sans); }
+code, pre, kbd, samp { font-family: var(--mono); }
+
+::selection { background: #404040; color: #ffffff; }
+:focus-visible { outline: 2px solid #a0a0a0; outline-offset: 3px; }
+
+/* header + home */
+.header { border-bottom: 0; }
+.logo a { font-weight: 700; letter-spacing: -.4px; color: var(--primary); }
+.menu a { color: var(--secondary); }
+.menu a:hover, .menu .active { color: var(--primary); }
+.home-info { border-bottom: 0; }
+
+/* post list: background steps instead of borders */
+.post-entry { border: 0; background: var(--entry); }
+.post-entry:hover { background: #111111; }
+.entry-header h2 { color: var(--primary); }
+
+/* article */
+.post-content a:not(.anchor), .comments-heading a, .follow-posts a, .lightbox-original {
+  color: #ffffff; text-decoration-color: #606060;
+}
+.post-content a:not(.anchor):hover, .comments-heading a:hover, .follow-posts a:hover { text-decoration-color: #ffffff; }
+.post-content blockquote { border-inline-start: 0; background: var(--entry); padding: 14px 20px; color: var(--secondary); }
+.post-content pre, .code-fold, .code-fold pre { border: 0; }
+.post-content :not(pre) > code { background: var(--code-bg); color: #dfdfdf; }
+.toc { border: 0; background: var(--entry); }
+.download-link { border: 0 !important; }
+
+/* reading tools, related posts, search */
+.code-fold-toggle { border-top: 0; background: #111111; color: #a0a0a0; }
+.code-fold-toggle:hover { color: #ffffff; }
+.related-posts, .follow-posts { border-top: 0; }
+.related-posts a, .search-result-link { border: 0; background: var(--entry); }
+.related-posts a:hover, .search-result-link:hover { background: #111111; }
+.site-search input { border: 0; background: #171717; }
+.site-search button { border: 0; background: #202020; }
+.image-lightbox, .lightbox-close { border: 0; }
+
+/* comments */
+.comments-section { border-top: 0; }
+.comment, #comment-form { border: 0; background: var(--entry); }
+#yorumlar .comment-avatar { border: 0; background: #171717; }
+.comment-reply, #yorumlar .author-reply { border-inline-start: 0; background: #111111; }
+#yorumlar .author-identity-line a { color: var(--primary); }
+#yorumlar .author-identity-line a:hover, #yorumlar .author-verified { color: #ffffff; }
+.author-badge { border: 0; background: #202020; color: #dfdfdf; }
+#comment-form input, #comment-form textarea { border: 0; background: #171717; color: var(--primary); }
+#comment-form input:focus, #comment-form textarea:focus { background: #202020; }
+#comment-form button, .comment-retry { border: 0; background: #dfdfdf; color: #000000; }
+#comment-form button:hover, .comment-retry:hover { background: #ffffff; }
+
+/* syntax highlighting on the same gray ramp */
+.chroma, .bg { background-color: var(--code-block-bg); color: #bfbfbf; }
+.chroma .k, .chroma .kc, .chroma .kd, .chroma .kn, .chroma .kp, .chroma .kr, .chroma .kt, .chroma .ow, .chroma .nt { color: #ffffff; font-weight: 600; }
+.chroma .nf, .chroma .fm { color: #efefef; }
+.chroma .nc, .chroma .nn { color: #dfdfdf; text-decoration: none; }
+.chroma .nb, .chroma .bp, .chroma .na, .chroma .ne { color: #cfcfcf; }
+.chroma .nv, .chroma .vc, .chroma .vg, .chroma .vi, .chroma .vm, .chroma .no, .chroma .nd { color: #b0b0b0; }
+.chroma .s, .chroma .sa, .chroma .sb, .chroma .sc, .chroma .dl, .chroma .sd, .chroma .s2, .chroma .se, .chroma .sh,
+.chroma .si, .chroma .sx, .chroma .sr, .chroma .s1, .chroma .ss { color: #909090; }
+.chroma .m, .chroma .mb, .chroma .mf, .chroma .mh, .chroma .mi, .chroma .il, .chroma .mo { color: #dfdfdf; }
+.chroma .c, .chroma .ch, .chroma .cm, .chroma .c1, .chroma .cs { color: #606060; font-style: italic; font-weight: 400; background: none; }
+.chroma .cp, .chroma .cpf { color: #909090; font-weight: 400; }
+.chroma .gd { color: #808080; text-decoration: line-through; }
+.chroma .gi, .chroma .gh, .chroma .gu { color: #ffffff; }
+.chroma .gr, .chroma .gt { color: #cfcfcf; }
+.chroma .err { color: #ffffff; background: #303030; }
+.chroma .hl { background-color: #202020; }
+.chroma .lnt, .chroma .ln, .chroma .w { color: #404040; }
+.post-content blockquote > :last-child { margin-bottom: 0; }
