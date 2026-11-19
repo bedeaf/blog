@@ -30,31 +30,48 @@
     let hash = 2166136261;
     for (const ch of label) hash = Math.imul(hash ^ ch.codePointAt(0), 16777619);
     hash >>>= 0;
-    const backgrounds = ["#334c4b","#3b435d","#554254","#4d463c","#365345","#4a4058","#46565d","#574846"];
-    const skins = ["#f2c8a5","#dba987","#bc8065","#8d5949","#e8b994","#ad6d52"];
-    const hairs = ["#241e26","#453027","#694a36","#9d7550","#ded0b7","#2d3139"];
-    const shirts = ["#a7d5bd","#c0abd0","#b0bccf","#d2ad91","#8bb8b6","#ce9f9f"];
-    const hairlines = [
-      "M16 27Q14 9 32 10Q50 9 48 28L45 21Q35 24 26 17Q22 23 16 27Z",
-      "M16 24Q17 9 31 10Q46 9 49 24Q42 17 32 18Q22 17 16 24Z",
-      "M16 27Q13 9 32 8Q52 9 48 28L45 18Q35 26 18 23Z",
-      "M16 25Q18 11 29 10Q42 7 48 24Q35 16 16 25Z",
-      "M16 27Q11 12 25 11Q34 5 43 12Q53 15 48 28Q41 18 32 20Q23 14 16 27Z"
+    const skins = ["#f2c8a5","#e3b48f","#c98f69","#a86b4a","#7d4b33","#5a3424"];
+    const hairs = ["#0f0f0f","#2b211b","#4a3326","#7a5534","#b08a5e","#d8c6a3","#6e6e6e","#7c2d1c"];
+    const cloth = ["#1b1b1b","#262626","#323232","#3d3d3d","#4a4a4a"];
+    const backHair = [
+      "",
+      "M14 30Q12 12 32 9Q52 12 50 30L52 52Q46 46 46 34L18 34Q18 46 12 52Z",
+      "M15 30Q13 12 32 9Q51 12 49 30L50 42Q47 38 46 33L18 33Q17 38 14 42Z",
+      ""
     ];
-    const bg=backgrounds[hash%backgrounds.length], skin=skins[(hash>>>3)%skins.length];
-    const hair=hairs[(hash>>>7)%hairs.length], shirt=shirts[(hash>>>12)%shirts.length];
-    const hairline=hairlines[(hash>>>17)%hairlines.length];
-    const glasses=(hash&7)===3 ? '<g fill="none" stroke="#343239" stroke-width="1.7"><rect x="20" y="27" width="10" height="7" rx="2"/><rect x="34" y="27" width="10" height="7" rx="2"/><path d="M30 30h4"/></g>' : "";
-    const svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">'
-      +'<rect width="64" height="64" fill="'+bg+'"/>'
-      +'<circle cx="32" cy="24" r="24" fill="#ffffff" opacity=".05"/>'
-      +'<path d="M7 64C9 50 20 46 32 46S55 50 57 64" fill="'+shirt+'"/>'
-      +'<rect x="28" y="40" width="8" height="10" rx="3" fill="'+skin+'"/>'
-      +'<ellipse cx="32" cy="29" rx="16" ry="20" fill="'+skin+'"/>'
-      +'<path d="'+hairline+'" fill="'+hair+'"/>'
-      +'<circle cx="26" cy="31" r="1.4" fill="#29252c"/><circle cx="38" cy="31" r="1.4" fill="#29252c"/>'
-      +'<path d="M28 39Q32 42 36 39" fill="none" stroke="#814c4a" stroke-width="1.7" stroke-linecap="round"/>'
-      +glasses+'</svg>';
+    const tops = [
+      "M15 27Q14 8 32 7Q50 8 49 27Q46 15 32 14Q18 15 15 27Z",
+      "M15 26Q15 7 33 7Q49 8 49 25Q43 13 34 15Q27 12 22 17Q18 20 15 26Z",
+      "M16 25Q16 9 32 8Q48 9 48 25Q40 12 32 13Q24 12 16 25Z",
+      "M14 28Q12 10 26 9Q31 4 39 8Q52 10 50 28Q47 16 39 15Q35 18 29 15Q20 16 14 28Z",
+      "M17 22Q19 10 32 9.5Q45 10 47 22Q40 15.5 32 15.5Q24 15.5 17 22Z",
+      "M15 27Q13 9 32 7Q51 9 49 27Q45 17 38 16Q36 13 32 16Q27 13 24 17Q18 18 15 27Z"
+    ];
+    const skin = skins[hash % skins.length], hair = hairs[(hash >>> 3) % hairs.length];
+    const shirt = cloth[(hash >>> 7) % cloth.length];
+    const back = backHair[(hash >>> 10) % backHair.length], top = tops[(hash >>> 13) % tops.length];
+    const hood = ((hash >>> 17) & 3) === 0;
+    const bun = !hood && ((hash >>> 19) & 7) === 5 ? '<circle cx="32" cy="7" r="5" fill="' + hair + '"/>' : "";
+    const ink = "#141414";
+    const mask =
+      '<path d="M32 9C44 9 49 18 48 30C47 41 41 51 32 55C23 51 17 41 16 30C15 18 20 9 32 9Z" fill="#efe9df"/>'
+      + '<circle cx="23" cy="38" r="3.2" fill="#e2a9a0" opacity=".45"/><circle cx="41" cy="38" r="3.2" fill="#e2a9a0" opacity=".45"/>'
+      + '<path d="M20 26Q25 21.5 29.5 25.5M34.5 25.5Q39 21.5 44 26" fill="none" stroke="' + ink + '" stroke-width="1.3" stroke-linecap="round"/>'
+      + '<path d="M21 30Q25 27.6 29 30Q25 31.6 21 30ZM35 30Q39 27.6 43 30Q39 31.6 35 30Z" fill="#000"/>'
+      + '<path d="M32 30.5L31 37Q32 38.2 33 37" fill="none" stroke="#cbbfae" stroke-width=".9" stroke-linecap="round"/>'
+      + '<path d="M32 40.6Q36.5 38 40.5 40.4Q43 39.6 44.6 36.6Q43.4 43.2 36.5 42.6Q33.6 42.3 32 41.6Q30.4 42.3 27.5 42.6Q20.6 43.2 19.4 36.6Q21 39.6 23.5 40.4Q27.5 38 32 40.6Z" fill="' + ink + '"/>'
+      + '<path d="M26.5 45.2Q32 48.6 37.5 45.2" fill="none" stroke="' + ink + '" stroke-width="1.1" stroke-linecap="round"/>'
+      + '<path d="M30.9 48.2Q32 54 33.1 48.2Q32 48.9 30.9 48.2Z" fill="' + ink + '"/>';
+    const svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">'
+      + '<rect width="64" height="64" fill="#000"/>'
+      + (hood ? '<path d="M8 64Q8 36 14 22Q20 6 32 5Q44 6 50 22Q56 36 56 64Z" fill="' + shirt + '"/>' : '')
+      + (back && !hood ? '<path d="' + back + '" fill="' + hair + '"/>' : '')
+      + '<path d="M8 64C10 51 20 47 32 47S54 51 56 64Z" fill="' + shirt + '"/>'
+      + '<rect x="27.5" y="44" width="9" height="8" fill="' + skin + '"/>'
+      + '<ellipse cx="15.6" cy="32" rx="2.4" ry="4" fill="' + skin + '"/><ellipse cx="48.4" cy="32" rx="2.4" ry="4" fill="' + skin + '"/>'
+      + mask
+      + (hood ? '<path d="M13 30Q14 11 32 9Q50 11 51 30Q46 13 32 13Q18 13 13 30Z" fill="' + shirt + '"/>' : bun + '<path d="' + top + '" fill="' + hair + '"/>')
+      + '</svg>';
     return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
   }
 
