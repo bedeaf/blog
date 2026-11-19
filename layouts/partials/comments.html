@@ -78,7 +78,7 @@
     const name = document.createElement("a");
     name.className = "comment-author";
     name.href = "/author/";
-    name.textContent = "Yazar";
+    name.textContent = String(reply.author || "0x00bedeaf");
     const mark = document.createElement("span");
     mark.className = "author-verified";
     mark.setAttribute("role", "img");

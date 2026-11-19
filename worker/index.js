@@ -8,6 +8,12 @@ const json = (data, status = 200) =>
   new Response(JSON.stringify(data), { status, headers: JSON_HEADERS });
 
 const SLUG_RE = /^\/posts\/[a-z0-9-]+\/$/;
+const AUTHOR_NAME = "0x00bedeaf";
+// Visitors may not post under the author's name (or the old "Yazar" label).
+const isReservedAuthor = (name) => {
+  const n = name.toLowerCase().replace(/[^a-z0-9]/g, "");
+  return n.includes("bedeaf") || n === "yazar";
+};
 const MAX_RAW_CHARS = 8 * 1024;
 const RATE_LIMIT = 5;
 const RATE_WINDOW = 3600;
@@ -53,7 +59,7 @@ async function listComments(url, env) {
   for (const reply of replies) {
     if (!replyMap.has(reply.comment_id)) replyMap.set(reply.comment_id, []);
     replyMap.get(reply.comment_id).push({
-      id: reply.id, author: "Yazar", body: reply.body, created_at: reply.created_at, is_author: true
+      id: reply.id, author: AUTHOR_NAME, body: reply.body, created_at: reply.created_at, is_author: true
     });
   }
   return json({
@@ -82,6 +88,7 @@ async function createComment(request, env) {
   const token = String(data.token || "");
   if (!SLUG_RE.test(slug)) return json({ error: "bad_slug" }, 400);
   if (author.length < 1 || author.length > 40) return json({ error: "bad_author" }, 400);
+  if (isReservedAuthor(author)) return json({ error: "reserved_author" }, 400);
   if (body.length < 2 || body.length > 2000) return json({ error: "bad_body" }, 400);
   if (!token) return json({ error: "captcha_required" }, 400);
 
