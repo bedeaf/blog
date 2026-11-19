@@ -95,7 +95,7 @@ code, pre, kbd, samp { font-family: var(--mono); }
 /* ---------- attention, kept quiet ---------- */
 
 /* hero: the name decodes from hex, the dword lands in memory */
-.bd-hero { position: relative; overflow: hidden; margin: 40px 0 56px; padding: 56px 0 44px; text-align: center; isolation: isolate; }
+.bd-hero { position: relative; overflow: hidden; margin: 16px 0 28px; padding: 26px 0 22px; text-align: center; isolation: isolate; }
 .bd-hero::before { content: ""; position: absolute; inset: 0; z-index: -1;
   background: linear-gradient(100deg, transparent 30%, rgb(255 255 255 / .06) 50%, transparent 70%) no-repeat;
   background-size: 50% 100%; background-position: -60% 0; animation: bd-sweep 9s ease-in-out 2.4s infinite;
@@ -103,16 +103,16 @@ code, pre, kbd, samp { font-family: var(--mono); }
 @keyframes bd-sweep { 0% { background-position: -60% 0; } 60%, 100% { background-position: 160% 0; } }
 .bd-asm { margin: 0 0 6px; color: #606060; font: 500 14px/1.4 var(--mono); letter-spacing: .5px; }
 .bd-asm .bd-op { color: #808080; } .bd-asm .bd-imm { color: #dfdfdf; }
-.bd-name { margin: 0; font-size: clamp(64px, 14vw, 132px); font-weight: 800; line-height: 1; letter-spacing: 0; color: #efefef; }
+.bd-name { margin: 0; font-size: clamp(56px, 9vw, 76px); font-weight: 800; line-height: 1; letter-spacing: 0; color: #efefef; }
 .bd-name span { display: inline-block; width: .8em; text-align: center; transition: color .2s; }
 .bd-name .bd-scr { color: #404040; }
-.bd-bytes { margin: 18px 0 0; font: 500 17px/1.4 var(--mono); color: #dfdfdf; word-spacing: 6px; }
+.bd-bytes { margin: 10px 0 0; font: 500 17px/1.4 var(--mono); color: #dfdfdf; word-spacing: 6px; }
 .bd-bytes .bd-addr { color: #606060; margin-right: 6px; } .bd-bytes .bd-zero { color: #808080; }
 .bd-run .bd-b { opacity: 0; }
 .bd-done .bd-b { animation: bd-pop .25s ease both; }
 .bd-done .bd-b:nth-of-type(2) { animation-delay: .18s; } .bd-done .bd-b:nth-of-type(3) { animation-delay: .36s; } .bd-done .bd-b:nth-of-type(4) { animation-delay: .54s; }
 @keyframes bd-pop { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
-.bd-tag { margin: 26px auto 0; max-width: 560px; color: var(--secondary); font-size: 17px; line-height: 1.7; }
+.bd-tag { margin: 14px auto 0; max-width: 620px; color: var(--secondary); font-size: 16px; line-height: 1.6; }
 
 /* post list: rise in, white edge and arrow on hover */
 .post-entry { position: relative; transition: background .2s ease; animation: bd-rise .5s ease both; }
@@ -199,3 +199,7 @@ code, pre, kbd, samp { font-family: var(--mono); }
   #comment-form input, #comment-form textarea { padding: 10px; margin-bottom: 12px; }
   .footer { padding: 18px var(--gap); }
 }
+
+/* GitHub avatar beside the site name */
+.logo a { display: inline-flex; align-items: center; gap: 10px; }
+.logo a img { width: 30px; height: 30px; margin: 0; object-fit: cover; }

@@ -93,3 +93,8 @@ enableRobotsTXT = true
 [params.homeInfoParams]
   Title = "bedeaf"
   Content = "Tersine mühendislik, Linux ve binary analiz üzerine writeup'lar ve notlar."
+
+[params.label]
+  text = "bedeaf"
+  icon = "/avatar.jpg"
+  iconHeight = 30
