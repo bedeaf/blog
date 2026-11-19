@@ -50,9 +50,14 @@ enableRobotsTXT = true
     weight = 3
 
   [[menus.main]]
+    name = "OSS"
+    pageRef = "/oss"
+    weight = 4
+
+  [[menus.main]]
     name = "About"
     pageRef = "/about"
-    weight = 4
+    weight = 5
 
 [pagination]
   pagerSize = 10
@@ -64,15 +69,15 @@ enableRobotsTXT = true
 
 [[menus.main]]
   identifier = "search"
-  name = "Ara"
+  name = "Search"
   pageRef = "/search"
-  weight = 5
+  weight = 6
 
 [[menus.main]]
   identifier = "rss"
   name = "RSS"
   url = "/index.xml"
-  weight = 6
+  weight = 7
 
 [related]
   includeNewer = true

@@ -1,0 +1,56 @@
+{{ define "main" }}
+<header class="page-header"><h1>{{ .Title }}</h1>{{ with .Params.summary }}<p class="post-description">{{ . }}</p>{{ end }}</header>
+{{ with hugo.Data.oss }}
+<div class="oss">
+  <dl class="oss-stats">
+    <div><dt>Merge edildi</dt><dd>{{ .stats.merged }}</dd></div>
+    <div><dt>İncelemede</dt><dd>{{ .stats.open }}</dd></div>
+    <div><dt>Katkı verilen proje</dt><dd>{{ .stats.projects }}</dd></div>
+  </dl>
+
+  {{ with .contributions }}
+  <section aria-labelledby="oss-contrib">
+    <h2 id="oss-contrib" class="oss-heading">Katkılar</h2>
+    {{ range . }}
+    <article class="oss-repo">
+      <header class="oss-repo-head">
+        <a href="{{ .url }}">{{ .repo }}</a>
+        <span class="oss-meta">{{ with .language }}{{ . }}{{ end }}{{ with .stars }} · ★ {{ lang.FormatNumber 0 . }}{{ end }}</span>
+      </header>
+      {{ with .description }}<p class="oss-desc">{{ . }}</p>{{ end }}
+      <ul class="oss-prs">
+        {{ range .prs }}
+        <li class="oss-pr">
+          <span class="oss-state is-{{ .state }}">{{ if eq .state "merged" }}merged{{ else }}open{{ end }}</span>
+          <a class="oss-title" href="{{ .url }}">{{ .title }}</a>
+          <span class="oss-ref">#{{ .number }}{{ with .tag }} <span class="oss-tag">{{ . }}</span>{{ end }}</span>
+          <time datetime="{{ .date }}">{{ time.Format ":date_medium" (time.AsTime .date) }}</time>
+        </li>
+        {{ end }}
+      </ul>
+    </article>
+    {{ end }}
+  </section>
+  {{ end }}
+
+  {{ with .projects }}
+  <section aria-labelledby="oss-own">
+    <h2 id="oss-own" class="oss-heading">Kendi projelerim</h2>
+    <ul class="oss-projects">
+      {{ range . }}
+      <li>
+        <a href="{{ .url }}">{{ .name }}</a>
+        <span class="oss-meta">{{ with .language }}{{ . }}{{ end }}{{ with .stars }} · ★ {{ . }}{{ end }}</span>
+        {{ with .description }}<p class="oss-desc">{{ . }}</p>{{ end }}
+      </li>
+      {{ end }}
+    </ul>
+  </section>
+  {{ end }}
+
+  <p class="oss-updated">GitHub'dan derlendi: <time datetime="{{ .generated }}">{{ time.Format ":date_long" (time.AsTime .generated) }}</time> · <a href="https://github.com/pulls?q=is%3Apr+author%3A{{ .user }}+-user%3A{{ .user }}">tüm PR'lar</a></p>
+</div>
+{{ else }}
+<p class="oss-empty">Katkı listesi henüz derlenmedi.</p>
+{{ end }}
+{{ end }}

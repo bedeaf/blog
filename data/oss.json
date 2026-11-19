@@ -1,0 +1,102 @@
+{
+  "generated": "2026-11-19T11:36:17.928Z",
+  "user": "bedeaf",
+  "stats": {
+    "merged": 1,
+    "open": 1,
+    "projects": 1
+  },
+  "contributions": [
+    {
+      "repo": "radareorg/radare2",
+      "url": "https://github.com/radareorg/radare2",
+      "description": "UNIX-like reverse engineering framework and command-line toolset",
+      "language": "C",
+      "stars": 25459,
+      "prs": [
+        {
+          "number": 27518,
+          "title": "Color the variables and arguments in the decompiler output",
+          "tag": "print",
+          "state": "merged",
+          "url": "https://github.com/radareorg/radare2/pull/27518",
+          "date": "2026-11-19T11:31:33Z"
+        },
+        {
+          "number": 27519,
+          "title": "Update the style check command in CONTRIBUTING.md",
+          "tag": "doc",
+          "state": "open",
+          "url": "https://github.com/radareorg/radare2/pull/27519",
+          "date": "2026-11-19T11:22:08Z"
+        }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "gom",
+      "url": "https://github.com/bedeaf/gom",
+      "description": "Game on-another Machine: play untrusted native Linux games at full speed in a layered sandbox (bubblewrap + gamescope + Landlock + seccomp). Made for the archive.org Native Linux Games Collection.",
+      "language": "C",
+      "stars": 1,
+      "pushed": "2026-11-17T15:58:23Z"
+    },
+    {
+      "name": "ppwm",
+      "url": "https://github.com/bedeaf/ppwm",
+      "description": "Minimal patchable C++20 X11 window manager with autotiling, periodic bar and XEmbed tray",
+      "language": "C++",
+      "stars": 1,
+      "pushed": "2026-11-02T18:28:41Z"
+    },
+    {
+      "name": "dwm",
+      "url": "https://github.com/bedeaf/dwm",
+      "description": "Patched dwm for Void Linux: per-tag layouts, status2d and stable tray ordering.",
+      "language": "C",
+      "stars": 1,
+      "pushed": "2026-10-26T17:44:02Z"
+    },
+    {
+      "name": "linux-mentor",
+      "url": "https://github.com/bedeaf/linux-mentor",
+      "description": "C, C++23 ve Go ile küçük, çalıştırılabilir Linux deneyleri. Her hafta yeni bir bölüm.",
+      "language": "C",
+      "stars": 0,
+      "pushed": "2026-11-14T15:49:00Z"
+    },
+    {
+      "name": "nvim",
+      "url": "https://github.com/bedeaf/nvim",
+      "description": "Personal LazyVim setup with project-aware builds, debugging, templates and a monochrome UI.",
+      "language": "Lua",
+      "stars": 0,
+      "pushed": "2026-10-27T14:59:42Z"
+    },
+    {
+      "name": "mc-workflow",
+      "url": "https://github.com/bedeaf/mc-workflow",
+      "description": "Midnight Commander desktop integration with clipboard paths, safe archives, SHA256 comparisons and directory shortcuts.",
+      "language": "Python",
+      "stars": 0,
+      "pushed": "2026-10-25T20:30:19Z"
+    },
+    {
+      "name": "peeq",
+      "url": "https://github.com/bedeaf/peeq",
+      "description": "ThinkPad speaker EQ with automatic headphone bypass and PulseAudio output routing.",
+      "language": "Python",
+      "stars": 0,
+      "pushed": "2026-10-23T17:33:55Z"
+    },
+    {
+      "name": "void-config",
+      "url": "https://github.com/bedeaf/void-config",
+      "description": "Void Linux on a ThinkPad: runit, ZFS, dwm, DNSCrypt, nftables and documented system measurements.",
+      "language": "C",
+      "stars": 0,
+      "pushed": "2026-10-23T16:55:29Z"
+    }
+  ]
+}
