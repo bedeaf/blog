@@ -31,14 +31,14 @@
     for (const ch of label) hash = Math.imul(hash ^ ch.codePointAt(0), 16777619);
     hash >>>= 0;
     const skins = ["#f2c8a5","#e3b48f","#c98f69","#a86b4a","#7d4b33","#5a3424"];
-    const hairs = ["#0f0f0f","#2b211b","#4a3326","#7a5534","#b08a5e","#d8c6a3","#6e6e6e","#7c2d1c"];
-    const cloth = ["#1b1b1b","#262626","#323232","#3d3d3d","#4a4a4a"];
-    const backHair = [
-      "",
-      "M14 30Q12 12 32 9Q52 12 50 30L52 52Q46 46 46 34L18 34Q18 46 12 52Z",
-      "M15 30Q13 12 32 9Q51 12 49 30L50 42Q47 38 46 33L18 33Q17 38 14 42Z",
-      ""
-    ];
+    const hairs = ["#151311","#2b211b","#4a3326","#7a5534","#b08a5e","#d8c6a3","#8a8a8a","#7c2d1c"];
+    // Clothing hue walks the golden angle (1/phi of a turn) so neighbours never collide;
+    // saturation stays low and lightness stays well above the black ground.
+    const PHI = 0.6180339887498949;
+    const hue = Math.round(((((hash >>> 7) % 997) * PHI) % 1) * 360);
+    const lit = 34 + ((hash >>> 4) % 3) * 5;
+    const tone = (dl, s) => "hsl(" + hue + " " + (s == null ? 30 : s) + "% " + (lit + dl) + "%)";
+    const cloth = tone(0), shade = tone(-12), light = tone(22, 18);
     const tops = [
       "M15 27Q14 8 32 7Q50 8 49 27Q46 15 32 14Q18 15 15 27Z",
       "M15 26Q15 7 33 7Q49 8 49 25Q43 13 34 15Q27 12 22 17Q18 20 15 26Z",
@@ -47,11 +47,23 @@
       "M17 22Q19 10 32 9.5Q45 10 47 22Q40 15.5 32 15.5Q24 15.5 17 22Z",
       "M15 27Q13 9 32 7Q51 9 49 27Q45 17 38 16Q36 13 32 16Q27 13 24 17Q18 18 15 27Z"
     ];
+    const longHair = ["", "M14 30Q12 12 32 9Q52 12 50 30L51 50Q46 46 46 34L18 34Q18 46 13 50Z", "", "M15 30Q13 12 32 9Q51 12 49 30L50 42Q47 38 46 33L18 33Q17 38 14 42Z"];
     const skin = skins[hash % skins.length], hair = hairs[(hash >>> 3) % hairs.length];
-    const shirt = cloth[(hash >>> 7) % cloth.length];
-    const back = backHair[(hash >>> 10) % backHair.length], top = tops[(hash >>> 13) % tops.length];
-    const hood = ((hash >>> 17) & 3) === 0;
-    const bun = !hood && ((hash >>> 19) & 7) === 5 ? '<circle cx="32" cy="7" r="5" fill="' + hair + '"/>' : "";
+    const top = tops[(hash >>> 13) % tops.length], back = longHair[(hash >>> 10) % longHair.length];
+    const outfit = (hash >>> 17) % 3; // 0 tee, 1 hoodie (hood up), 2 jacket over tee
+    const body = '<path d="M6 64C8 52 18 47.5 32 47.5S56 52 58 64Z" fill="' + cloth + '"/>';
+    let under = "", over = "";
+    if (outfit === 1) {
+      under = '<path d="M17 47Q10 35 13 22Q17 6 32 5.5Q47 6 51 22Q54 35 47 47Z" fill="' + shade + '"/>';
+      over = '<path d="M19 48.5Q32 57 45 48.5" fill="none" stroke="' + shade + '" stroke-width="2.2" stroke-linecap="round"/>'
+        + '<path d="M28.5 52.5L28 60M35.5 52.5L36 60" stroke="' + light + '" stroke-width="1" stroke-linecap="round"/>';
+    } else if (outfit === 2) {
+      over = '<path d="M25.5 47.8L32 64L38.5 47.8Q32 51 25.5 47.8Z" fill="' + light + '"/>'
+        + '<path d="M25.5 47.8L30.5 64M38.5 47.8L33.5 64" stroke="' + shade + '" stroke-width="1.4"/>';
+    } else {
+      over = '<path d="M26 47.8Q32 53.2 38 47.8" fill="none" stroke="' + shade + '" stroke-width="1.6" stroke-linecap="round"/>';
+    }
+    const bun = outfit !== 1 && ((hash >>> 19) & 7) === 5 ? '<circle cx="32" cy="7" r="5" fill="' + hair + '"/>' : "";
     const ink = "#141414";
     const mask =
       '<path d="M32 9C44 9 49 18 48 30C47 41 41 51 32 55C23 51 17 41 16 30C15 18 20 9 32 9Z" fill="#efe9df"/>'
@@ -64,13 +76,14 @@
       + '<path d="M30.9 48.2Q32 54 33.1 48.2Q32 48.9 30.9 48.2Z" fill="' + ink + '"/>';
     const svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">'
       + '<rect width="64" height="64" fill="#000"/>'
-      + (hood ? '<path d="M8 64Q8 36 14 22Q20 6 32 5Q44 6 50 22Q56 36 56 64Z" fill="' + shirt + '"/>' : '')
-      + (back && !hood ? '<path d="' + back + '" fill="' + hair + '"/>' : '')
-      + '<path d="M8 64C10 51 20 47 32 47S54 51 56 64Z" fill="' + shirt + '"/>'
-      + '<rect x="27.5" y="44" width="9" height="8" fill="' + skin + '"/>'
+      + under
+      + (back && outfit !== 1 ? '<path d="' + back + '" fill="' + hair + '"/>' : '')
+      + body
+      + '<rect x="27.5" y="44" width="9" height="6" fill="' + skin + '"/>'
+      + over
       + '<ellipse cx="15.6" cy="32" rx="2.4" ry="4" fill="' + skin + '"/><ellipse cx="48.4" cy="32" rx="2.4" ry="4" fill="' + skin + '"/>'
       + mask
-      + (hood ? '<path d="M13 30Q14 11 32 9Q50 11 51 30Q46 13 32 13Q18 13 13 30Z" fill="' + shirt + '"/>' : bun + '<path d="' + top + '" fill="' + hair + '"/>')
+      + (outfit === 1 ? '<path d="M13 31Q13 10 32 8.5Q51 10 51 31Q47 13.5 32 13Q17 13.5 13 31Z" fill="' + cloth + '"/>' : bun + '<path d="' + top + '" fill="' + hair + '"/>')
       + '</svg>';
     return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
   }
