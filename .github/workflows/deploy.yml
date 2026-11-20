@@ -2,6 +2,8 @@ name: deploy
 on:
   push:
     branches: [main]
+  # refresh /github (profile, contribution calendar, upstream PRs) without a push
+  schedule: [{ cron: "17 */6 * * *" }]
   workflow_dispatch:
 concurrency: { group: deploy, cancel-in-progress: true }
 permissions: { contents: read }
@@ -17,6 +19,9 @@ jobs:
         with: { node-version: 24 }
       - run: npm ci
       - run: npm run build
+        env:
+          # tools/prof.mjs reads public GitHub data through `gh`
+          GH_TOKEN: ${{ github.token }}
       - run: npm test
       - run: npx wrangler@4 pages deploy --branch main --commit-dirty=true
         env:

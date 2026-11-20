@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 // Builds data/github.json for the /github page: the GitHub profile, last year's
 // contribution calendar, and the pull requests bedeaf opened in other people's
-// repositories. Runs before `hugo` in `npm run build`, using the local `gh`
-// login. On any failure the previous data/github.json is kept, so a deploy
-// never breaks on it.
+// repositories. Runs before `hugo` in `npm run build`, using the `gh` login
+// (GH_TOKEN in CI, where the deploy workflow also reruns it every 6 hours).
+// On any failure the previous data/github.json is kept, so a deploy never
+// breaks on it.
 import { execFile } from 'node:child_process';
 import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';

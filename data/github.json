@@ -1,19 +1,19 @@
 {
-  "generated": "2026-11-20T14:13:12.607Z",
+  "generated": "2026-11-20T22:59:21.906Z",
   "profile": {
     "name": "Mert",
     "tag": "0x00BEDEAF",
     "login": "bedeaf",
     "url": "https://github.com/bedeaf",
     "avatar": "https://avatars.githubusercontent.com/u/225603928?u=837430a8d445d77bbc9e5d2eb46a773bf41a8d67&v=4",
-    "bio": "Linux systems & binary analysis. Reverse engineering, crackmes and Linux internals; tools in C/C++.",
+    "bio": "Linux systems & binary & vulnerability analysis. Reverse engineering, crackmes and Linux internals",
     "location": "Eskişehir, Türkiye",
     "since": "2025-08-09T18:59:20Z",
-    "followers": 11,
-    "following": 12
+    "followers": 12,
+    "following": 13
   },
   "calendar": {
-    "total": 228,
+    "total": 240,
     "pad": 0,
     "weeks": 53,
     "days": [
@@ -1864,8 +1864,13 @@
       },
       {
         "d": "2026-11-20",
-        "n": 1,
-        "l": 1
+        "n": 6,
+        "l": 2
+      },
+      {
+        "d": "2026-11-21",
+        "n": 7,
+        "l": 2
       }
     ],
     "months": [
@@ -1918,9 +1923,9 @@
         "d": "2026-11-01"
       }
     ],
-    "active": 20,
+    "active": 21,
     "streak": {
-      "current": 5,
+      "current": 6,
       "longest": 7
     },
     "best": {
@@ -1929,25 +1934,93 @@
     }
   },
   "breakdown": {
-    "commits": 212,
-    "prs": 2,
+    "commits": 217,
+    "prs": 7,
     "reviews": 0,
     "issues": 0,
     "private": 0
   },
   "stats": {
     "merged": 1,
-    "open": 1,
-    "repos": 1
+    "open": 6,
+    "repos": 3
   },
   "contributions": [
+    {
+      "repo": "yshui/picom",
+      "url": "https://github.com/yshui/picom",
+      "description": "A lightweight compositor for X11 with animation support",
+      "language": "C",
+      "stars": 4832,
+      "prs": [
+        {
+          "number": 1561,
+          "title": "man: document that --backend has no default",
+          "tag": null,
+          "state": "open",
+          "url": "https://github.com/yshui/picom/pull/1561",
+          "opened": "2026-11-20T21:24:01Z",
+          "date": "2026-11-20T21:24:01Z",
+          "merge_minutes": null
+        },
+        {
+          "number": 1560,
+          "title": "config: don't quote the boolean in the vsync error message",
+          "tag": null,
+          "state": "open",
+          "url": "https://github.com/yshui/picom/pull/1560",
+          "opened": "2026-11-20T21:20:11Z",
+          "date": "2026-11-20T21:20:11Z",
+          "merge_minutes": null
+        }
+      ]
+    },
+    {
+      "repo": "radareorg/r2ghidra",
+      "url": "https://github.com/radareorg/r2ghidra",
+      "description": "Native Ghidra Decompiler for r2",
+      "language": "C++",
+      "stars": 578,
+      "prs": [
+        {
+          "number": 312,
+          "title": "Stop leaking cloned annotations in ParseNode",
+          "tag": null,
+          "state": "open",
+          "url": "https://github.com/radareorg/r2ghidra/pull/312",
+          "opened": "2026-11-20T21:16:51Z",
+          "date": "2026-11-20T21:16:51Z",
+          "merge_minutes": null
+        }
+      ]
+    },
     {
       "repo": "radareorg/radare2",
       "url": "https://github.com/radareorg/radare2",
       "description": "UNIX-like reverse engineering framework and command-line toolset",
       "language": "C",
-      "stars": 25471,
+      "stars": 25474,
       "prs": [
+        {
+          "number": 27558,
+          "title": "Print Cr metadata as a replayable command in C*",
+          "tag": "print",
+          "state": "open",
+          "url": "https://github.com/radareorg/radare2/pull/27558",
+          "opened": "2026-11-20T20:54:12Z",
+          "date": "2026-11-20T20:54:12Z",
+          "merge_minutes": null
+        },
+        {
+          "number": 27557,
+          "title": "Print align instead of unk for the stack alignment stackop",
+          "tag": "analysis",
+          "state": "open",
+          "url": "https://github.com/radareorg/radare2/pull/27557",
+          "opened": "2026-11-20T20:45:38Z",
+          "date": "2026-11-20T20:45:38Z",
+          "merge_minutes": null
+        },
         {
           "number": 27518,
           "title": "Color the variables and arguments in the decompiler output",
