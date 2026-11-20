@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-19T11:49:22.544Z",
+  "generated": "2026-11-20T14:13:12.607Z",
   "profile": {
     "name": "Mert",
     "tag": "0x00BEDEAF",
@@ -13,7 +13,7 @@
     "following": 12
   },
   "calendar": {
-    "total": 203,
+    "total": 228,
     "pad": 0,
     "weeks": 53,
     "days": [
@@ -1859,8 +1859,13 @@
       },
       {
         "d": "2026-11-19",
-        "n": 20,
+        "n": 44,
         "l": 4
+      },
+      {
+        "d": "2026-11-20",
+        "n": 1,
+        "l": 1
       }
     ],
     "months": [
@@ -1913,9 +1918,9 @@
         "d": "2026-11-01"
       }
     ],
-    "active": 19,
+    "active": 20,
     "streak": {
-      "current": 4,
+      "current": 5,
       "longest": 7
     },
     "best": {
@@ -1924,7 +1929,7 @@
     }
   },
   "breakdown": {
-    "commits": 187,
+    "commits": 212,
     "prs": 2,
     "reviews": 0,
     "issues": 0,
@@ -1941,7 +1946,7 @@
       "url": "https://github.com/radareorg/radare2",
       "description": "UNIX-like reverse engineering framework and command-line toolset",
       "language": "C",
-      "stars": 25459,
+      "stars": 25471,
       "prs": [
         {
           "number": 27518,
