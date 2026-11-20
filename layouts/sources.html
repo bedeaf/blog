@@ -1,0 +1,41 @@
+{{ define "main" }}
+{{- $cats := dict "reversing" "Tersine mühendislik" "exploitation" "Exploitation" "malware" "Zararlı yazılım" "web" "Web güvenliği" "network" "Ağ güvenliği" "forensics" "Adli analiz / DFIR" "crypto" "Kriptografi" "linux" "Linux ve sistemler" "ctf" "CTF ve pratik" "video" "Video ve dersler" "reference" "Referans" -}}
+{{- $order := slice "reversing" "exploitation" "malware" "web" "network" "forensics" "crypto" "linux" "ctf" "video" "reference" -}}
+{{- $all := site.Data.sources -}}
+<header class="page-header">
+  <h1>{{ .Title }}</h1>
+  <p class="post-description">Hepsi ücretsiz ve yasal. {{ len $all }} kaynak, kategoriye ve seviyeye göre süzülebilir.</p>
+</header>
+<div class="bd-src" id="bd-src">
+  <div class="bd-src-controls">
+    <input id="bd-src-q" type="search" placeholder="Ara: radare2, heap, pcap…" aria-label="Kaynaklarda ara" autocomplete="off">
+    <div class="bd-src-chips" role="group" aria-label="Kategori">
+      <button type="button" class="bd-chip is-on" data-cat="">Hepsi</button>
+      {{- range $order }}<button type="button" class="bd-chip" data-cat="{{ . }}">{{ index $cats . }}</button>{{ end }}
+    </div>
+    <div class="bd-src-chips" role="group" aria-label="Seviye">
+      <button type="button" class="bd-chip is-on" data-level="">Her seviye</button>
+      <button type="button" class="bd-chip" data-level="başlangıç">Başlangıç</button><button type="button" class="bd-chip" data-level="orta">Orta</button><button type="button" class="bd-chip" data-level="ileri">İleri</button>
+    </div>
+    <p class="bd-src-count" id="bd-src-count" role="status" aria-live="polite"></p>
+  </div>
+  {{- range $order }}
+  {{- $c := . }}{{ $items := where $all "cat" $c }}
+  {{- with $items }}
+  <section class="bd-src-group" data-group="{{ $c }}">
+    <h2>{{ index $cats $c }}</h2>
+    <ul>
+      {{- range . }}
+      <li class="bd-src-item" data-cat="{{ .cat }}" data-level="{{ .level }}" data-text="{{ lower (printf "%s %s %s" .name .desc .url) }}">
+        <a href="{{ .url }}" rel="noopener noreferrer" target="_blank">{{ .name }}</a>
+        <span class="bd-lv bd-lv-{{ .level }}">{{ .level }}</span>
+        <p>{{ .desc }}</p>
+      </li>
+      {{- end }}
+    </ul>
+  </section>
+  {{- end }}{{ end }}
+  <p class="bd-src-empty" id="bd-src-empty" hidden>Bu filtreyle eşleşen kaynak yok.</p>
+</div>
+<script defer src="{{ "js/bd-sources.js" | relURL }}"></script>
+{{ end }}

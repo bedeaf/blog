@@ -1,0 +1,639 @@
+[
+ {
+  "cat": "reversing",
+  "level": "başlangıç",
+  "name": "OpenSecurityTraining2",
+  "url": "https://ost2.fyi/",
+  "desc": "x86-64, mimari ve tersine mühendislik üzerine ücretsiz, derinlikli kurslar."
+ },
+ {
+  "cat": "reversing",
+  "level": "başlangıç",
+  "name": "Reverse Engineering for Beginners",
+  "url": "https://beginners.re/",
+  "desc": "Dennis Yurichev'in ücretsiz RE kitabı; derleyici çıktısını okumayı öğretir."
+ },
+ {
+  "cat": "reversing",
+  "level": "orta",
+  "name": "radare2 Book",
+  "url": "https://book.rada.re/",
+  "desc": "radare2'nin resmi kitabı: komutlar, görsel mod, scripting."
+ },
+ {
+  "cat": "reversing",
+  "level": "orta",
+  "name": "Binary Ninja Docs",
+  "url": "https://docs.binary.ninja/",
+  "desc": "Binary Ninja kullanım kılavuzu ve Python API."
+ },
+ {
+  "cat": "reversing",
+  "level": "orta",
+  "name": "Ghidra",
+  "url": "https://ghidra-sre.org/",
+  "desc": "NSA'nın açık kaynak tersine mühendislik aracı."
+ },
+ {
+  "cat": "reversing",
+  "level": "başlangıç",
+  "name": "Cutter",
+  "url": "https://cutter.re/",
+  "desc": "radare2/rizin tabanlı grafik arayüzlü RE aracı."
+ },
+ {
+  "cat": "reversing",
+  "level": "orta",
+  "name": "x64dbg",
+  "url": "https://x64dbg.com/",
+  "desc": "Windows için açık kaynak debugger."
+ },
+ {
+  "cat": "reversing",
+  "level": "başlangıç",
+  "name": "Compiler Explorer",
+  "url": "https://godbolt.org/",
+  "desc": "C/C++ kodunun hangi assembly'ye derlendiğini canlı gör."
+ },
+ {
+  "cat": "reversing",
+  "level": "başlangıç",
+  "name": "crackmes.one",
+  "url": "https://crackmes.one/",
+  "desc": "Topluluk crackme arşivi; zorluk seviyesine göre."
+ },
+ {
+  "cat": "reversing",
+  "level": "başlangıç",
+  "name": "Microcorruption",
+  "url": "https://microcorruption.com/",
+  "desc": "Gömülü kilit cihazı üzerinden debugger tabanlı CTF."
+ },
+ {
+  "cat": "reversing",
+  "level": "başlangıç",
+  "name": "Malware Unicorn RE101",
+  "url": "https://malwareunicorn.org/workshops/re101.html",
+  "desc": "Ücretsiz atölye: x86 ve temel zararlı yazılım analizi."
+ },
+ {
+  "cat": "reversing",
+  "level": "ileri",
+  "name": "Félix Cloutier x86 Reference",
+  "url": "https://www.felixcloutier.com/x86/",
+  "desc": "Intel kılavuzundan çıkarılmış hızlı x86 komut referansı."
+ },
+ {
+  "cat": "reversing",
+  "level": "ileri",
+  "name": "Intel SDM",
+  "url": "https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html",
+  "desc": "Intel 64 ve IA-32 mimarisi resmi geliştirici kılavuzları."
+ },
+ {
+  "cat": "reversing",
+  "level": "ileri",
+  "name": "x86-64 System V ABI",
+  "url": "https://gitlab.com/x86-psABIs/x86-64-ABI",
+  "desc": "Çağrı kuralları, stack düzeni, ELF ayrıntıları."
+ },
+ {
+  "cat": "exploitation",
+  "level": "başlangıç",
+  "name": "pwn.college",
+  "url": "https://pwn.college/",
+  "desc": "ASU'nun ücretsiz, adım adım ilerleyen exploitation eğitimi."
+ },
+ {
+  "cat": "exploitation",
+  "level": "orta",
+  "name": "Nightmare",
+  "url": "https://guyinatuxedo.github.io/",
+  "desc": "CTF problemleri üzerinden binary exploitation kursu."
+ },
+ {
+  "cat": "exploitation",
+  "level": "ileri",
+  "name": "how2heap",
+  "url": "https://github.com/shellphish/how2heap",
+  "desc": "glibc heap exploitation tekniklerinin çalışan örnekleri."
+ },
+ {
+  "cat": "exploitation",
+  "level": "başlangıç",
+  "name": "Exploit Education",
+  "url": "https://exploit.education/",
+  "desc": "Phoenix, Nebula, Fusion gibi çalışma VM'leri."
+ },
+ {
+  "cat": "exploitation",
+  "level": "orta",
+  "name": "ROP Emporium",
+  "url": "https://ropemporium.com/",
+  "desc": "Return-oriented programming'i adım adım öğreten görevler."
+ },
+ {
+  "cat": "exploitation",
+  "level": "orta",
+  "name": "pwntools Docs",
+  "url": "https://docs.pwntools.com/",
+  "desc": "Exploit yazmak için Python kütüphanesinin belgeleri."
+ },
+ {
+  "cat": "exploitation",
+  "level": "orta",
+  "name": "pwndbg",
+  "url": "https://github.com/pwndbg/pwndbg",
+  "desc": "GDB için exploit geliştirme eklentisi."
+ },
+ {
+  "cat": "exploitation",
+  "level": "orta",
+  "name": "ir0nstone Notes",
+  "url": "https://ir0nstone.gitbook.io/notes/",
+  "desc": "Binary exploitation ve kernel notları, kısa ve net."
+ },
+ {
+  "cat": "exploitation",
+  "level": "ileri",
+  "name": "GTFOBins",
+  "url": "https://gtfobins.github.io/",
+  "desc": "Unix ikililerinin yetki yükseltme ve kaçış amaçlı kullanımları."
+ },
+ {
+  "cat": "exploitation",
+  "level": "ileri",
+  "name": "LOLBAS",
+  "url": "https://lolbas-project.github.io/",
+  "desc": "Windows'ta saldırı amaçlı kullanılabilen yerleşik araçlar."
+ },
+ {
+  "cat": "exploitation",
+  "level": "orta",
+  "name": "Exploit-DB",
+  "url": "https://www.exploit-db.com/",
+  "desc": "Herkese açık exploit ve açık arşivi."
+ },
+ {
+  "cat": "malware",
+  "level": "başlangıç",
+  "name": "MalwareBazaar",
+  "url": "https://bazaar.abuse.ch/",
+  "desc": "Analiz için zararlı yazılım örnekleri (dikkatli kullan)."
+ },
+ {
+  "cat": "malware",
+  "level": "orta",
+  "name": "Malware Traffic Analysis",
+  "url": "https://www.malware-traffic-analysis.net/",
+  "desc": "Gerçek enfeksiyonlardan pcap'ler ve egzersizler."
+ },
+ {
+  "cat": "malware",
+  "level": "başlangıç",
+  "name": "VirusTotal",
+  "url": "https://www.virustotal.com/",
+  "desc": "Dosya, URL ve hash'leri onlarca motorla tara."
+ },
+ {
+  "cat": "malware",
+  "level": "orta",
+  "name": "Hybrid Analysis",
+  "url": "https://www.hybrid-analysis.com/",
+  "desc": "Ücretsiz otomatik sandbox raporları."
+ },
+ {
+  "cat": "malware",
+  "level": "orta",
+  "name": "YARA Docs",
+  "url": "https://yara.readthedocs.io/",
+  "desc": "Zararlı yazılım tespiti için kural yazma."
+ },
+ {
+  "cat": "malware",
+  "level": "orta",
+  "name": "capa",
+  "url": "https://github.com/mandiant/capa",
+  "desc": "Bir ikilinin yeteneklerini otomatik çıkaran araç."
+ },
+ {
+  "cat": "malware",
+  "level": "orta",
+  "name": "FLARE-VM",
+  "url": "https://github.com/mandiant/flare-vm",
+  "desc": "Windows tabanlı zararlı yazılım analiz ortamı."
+ },
+ {
+  "cat": "malware",
+  "level": "orta",
+  "name": "REMnux",
+  "url": "https://remnux.org/",
+  "desc": "Zararlı yazılım analizi için Linux dağıtımı."
+ },
+ {
+  "cat": "web",
+  "level": "başlangıç",
+  "name": "PortSwigger Web Security Academy",
+  "url": "https://portswigger.net/web-security",
+  "desc": "Ücretsiz laboratuvarlarla en iyi web güvenliği eğitimi."
+ },
+ {
+  "cat": "web",
+  "level": "başlangıç",
+  "name": "OWASP Top 10",
+  "url": "https://owasp.org/www-project-top-ten/",
+  "desc": "En yaygın web uygulaması riskleri."
+ },
+ {
+  "cat": "web",
+  "level": "orta",
+  "name": "OWASP WSTG",
+  "url": "https://owasp.org/www-project-web-security-testing-guide/",
+  "desc": "Web güvenlik testi rehberi."
+ },
+ {
+  "cat": "web",
+  "level": "başlangıç",
+  "name": "OWASP Juice Shop",
+  "url": "https://owasp.org/www-project-juice-shop/",
+  "desc": "Bilerek açıklı bırakılmış alıştırma uygulaması."
+ },
+ {
+  "cat": "web",
+  "level": "orta",
+  "name": "PayloadsAllTheThings",
+  "url": "https://github.com/swisskyrepo/PayloadsAllTheThings",
+  "desc": "Web ve pentest için payload ve bypass derlemesi."
+ },
+ {
+  "cat": "web",
+  "level": "orta",
+  "name": "HackTricks",
+  "url": "https://book.hacktricks.wiki/",
+  "desc": "Pentest teknikleri ansiklopedisi."
+ },
+ {
+  "cat": "network",
+  "level": "başlangıç",
+  "name": "Wireshark Docs",
+  "url": "https://www.wireshark.org/docs/",
+  "desc": "Kullanıcı kılavuzu ve filtre referansı."
+ },
+ {
+  "cat": "network",
+  "level": "başlangıç",
+  "name": "Wireshark Sample Captures",
+  "url": "https://wiki.wireshark.org/SampleCaptures",
+  "desc": "Protokol öğrenmek için örnek pcap dosyaları."
+ },
+ {
+  "cat": "network",
+  "level": "orta",
+  "name": "Nmap Book",
+  "url": "https://nmap.org/book/",
+  "desc": "Nmap'in resmi kitabı (büyük kısmı çevrimiçi ücretsiz)."
+ },
+ {
+  "cat": "network",
+  "level": "orta",
+  "name": "Zeek Docs",
+  "url": "https://docs.zeek.org/",
+  "desc": "Ağ güvenliği izleme platformu."
+ },
+ {
+  "cat": "network",
+  "level": "orta",
+  "name": "Suricata Docs",
+  "url": "https://docs.suricata.io/",
+  "desc": "IDS/IPS motoru ve kural yazımı."
+ },
+ {
+  "cat": "network",
+  "level": "başlangıç",
+  "name": "Beej's Guide to Network Programming",
+  "url": "https://beej.us/guide/bgnet/",
+  "desc": "C ile socket programlamaya en iyi giriş."
+ },
+ {
+  "cat": "network",
+  "level": "orta",
+  "name": "High Performance Browser Networking",
+  "url": "https://hpbn.co/",
+  "desc": "TCP, TLS, HTTP/2 ve tarayıcı ağ yığını, ücretsiz kitap."
+ },
+ {
+  "cat": "network",
+  "level": "orta",
+  "name": "nftables Wiki",
+  "url": "https://wiki.nftables.org/",
+  "desc": "Linux güvenlik duvarı kuralları."
+ },
+ {
+  "cat": "network",
+  "level": "ileri",
+  "name": "RFC Editor",
+  "url": "https://www.rfc-editor.org/",
+  "desc": "Protokollerin asıl tanımları."
+ },
+ {
+  "cat": "network",
+  "level": "başlangıç",
+  "name": "SANS Posters & Cheat Sheets",
+  "url": "https://www.sans.org/posters/",
+  "desc": "SANS'ın resmi, ücretsiz poster ve cheat sheet'leri."
+ },
+ {
+  "cat": "network",
+  "level": "orta",
+  "name": "SANS Internet Storm Center",
+  "url": "https://isc.sans.edu/",
+  "desc": "Günlük tehdit gözlemleri ve analist notları."
+ },
+ {
+  "cat": "network",
+  "level": "orta",
+  "name": "MITRE ATT&CK",
+  "url": "https://attack.mitre.org/",
+  "desc": "Saldırgan taktik ve tekniklerinin bilgi tabanı."
+ },
+ {
+  "cat": "network",
+  "level": "başlangıç",
+  "name": "CyberChef",
+  "url": "https://gchq.github.io/CyberChef/",
+  "desc": "Kodlama, şifreleme ve veri dönüştürme için \"İsviçre çakısı\"."
+ },
+ {
+  "cat": "forensics",
+  "level": "orta",
+  "name": "Volatility 3",
+  "url": "https://volatility3.readthedocs.io/",
+  "desc": "Bellek imajı adli analizi."
+ },
+ {
+  "cat": "forensics",
+  "level": "başlangıç",
+  "name": "Autopsy",
+  "url": "https://www.autopsy.com/",
+  "desc": "Disk imajı adli analiz platformu."
+ },
+ {
+  "cat": "forensics",
+  "level": "orta",
+  "name": "Eric Zimmerman's Tools",
+  "url": "https://ericzimmerman.github.io/",
+  "desc": "Windows adli analiz araçları."
+ },
+ {
+  "cat": "forensics",
+  "level": "başlangıç",
+  "name": "CyberDefenders",
+  "url": "https://cyberdefenders.org/",
+  "desc": "Blue team ve DFIR alıştırmaları."
+ },
+ {
+  "cat": "forensics",
+  "level": "başlangıç",
+  "name": "Blue Team Labs Online",
+  "url": "https://blueteamlabs.online/",
+  "desc": "Savunma tarafı ücretsiz görevler."
+ },
+ {
+  "cat": "crypto",
+  "level": "başlangıç",
+  "name": "CryptoHack",
+  "url": "https://cryptohack.org/",
+  "desc": "Oyunlaştırılmış modern kriptografi eğitimi."
+ },
+ {
+  "cat": "crypto",
+  "level": "orta",
+  "name": "Cryptopals",
+  "url": "https://cryptopals.com/",
+  "desc": "Gerçek kripto saldırılarını kendin yazdığın görevler."
+ },
+ {
+  "cat": "crypto",
+  "level": "ileri",
+  "name": "A Graduate Course in Applied Cryptography",
+  "url": "https://toc.cryptobook.us/",
+  "desc": "Boneh ve Shoup'un ücretsiz kitabı."
+ },
+ {
+  "cat": "crypto",
+  "level": "başlangıç",
+  "name": "Crypto 101",
+  "url": "https://www.crypto101.io/",
+  "desc": "Kriptografiye ücretsiz giriş kitabı."
+ },
+ {
+  "cat": "linux",
+  "level": "orta",
+  "name": "Linux Kernel Docs",
+  "url": "https://docs.kernel.org/",
+  "desc": "Çekirdeğin resmi belgeleri."
+ },
+ {
+  "cat": "linux",
+  "level": "başlangıç",
+  "name": "man7.org",
+  "url": "https://man7.org/linux/man-pages/",
+  "desc": "Linux man sayfaları, syscall referansı."
+ },
+ {
+  "cat": "linux",
+  "level": "ileri",
+  "name": "Linux Insides",
+  "url": "https://0xax.gitbooks.io/linux-insides/",
+  "desc": "Çekirdeğin önyüklemeden itibaren iç yapısı."
+ },
+ {
+  "cat": "linux",
+  "level": "orta",
+  "name": "OSTEP",
+  "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/",
+  "desc": "İşletim sistemleri, ücretsiz ders kitabı."
+ },
+ {
+  "cat": "linux",
+  "level": "orta",
+  "name": "CS:APP Labs",
+  "url": "http://csapp.cs.cmu.edu/3e/labs.html",
+  "desc": "Bomb lab, attack lab: CMU'nun klasik laboratuvarları."
+ },
+ {
+  "cat": "linux",
+  "level": "ileri",
+  "name": "MIT 6.1810 (xv6)",
+  "url": "https://pdos.csail.mit.edu/6.828/",
+  "desc": "MIT işletim sistemi dersi, xv6 çekirdeği üzerinde."
+ },
+ {
+  "cat": "linux",
+  "level": "başlangıç",
+  "name": "Nand2Tetris",
+  "url": "https://www.nand2tetris.org/",
+  "desc": "NAND kapısından işletim sistemine bilgisayar kurmak."
+ },
+ {
+  "cat": "linux",
+  "level": "başlangıç",
+  "name": "cppreference",
+  "url": "https://en.cppreference.com/",
+  "desc": "C ve C++ standart kütüphane referansı."
+ },
+ {
+  "cat": "linux",
+  "level": "başlangıç",
+  "name": "explainshell",
+  "url": "https://explainshell.com/",
+  "desc": "Bir shell komutunu parça parça açıklar."
+ },
+ {
+  "cat": "ctf",
+  "level": "başlangıç",
+  "name": "picoCTF",
+  "url": "https://picoctf.org/",
+  "desc": "Başlangıç dostu, her zaman açık CTF."
+ },
+ {
+  "cat": "ctf",
+  "level": "başlangıç",
+  "name": "OverTheWire",
+  "url": "https://overthewire.org/wargames/",
+  "desc": "Bandit'ten başlayan klasik wargame'ler."
+ },
+ {
+  "cat": "ctf",
+  "level": "orta",
+  "name": "pwnable.kr",
+  "url": "http://pwnable.kr/",
+  "desc": "Kore'nin klasik pwn alıştırmaları."
+ },
+ {
+  "cat": "ctf",
+  "level": "ileri",
+  "name": "pwnable.tw",
+  "url": "https://pwnable.tw/",
+  "desc": "Zorlu pwn görevleri."
+ },
+ {
+  "cat": "ctf",
+  "level": "orta",
+  "name": "Root Me",
+  "url": "https://www.root-me.org/",
+  "desc": "Yüzlerce kategoriye ayrılmış görev."
+ },
+ {
+  "cat": "ctf",
+  "level": "başlangıç",
+  "name": "CTFtime",
+  "url": "https://ctftime.org/",
+  "desc": "Yaklaşan CTF'ler ve writeup arşivi."
+ },
+ {
+  "cat": "ctf",
+  "level": "başlangıç",
+  "name": "TryHackMe",
+  "url": "https://tryhackme.com/",
+  "desc": "Tarayıcıda çalışan odalar (ücretsiz katman)."
+ },
+ {
+  "cat": "ctf",
+  "level": "orta",
+  "name": "Hack The Box",
+  "url": "https://www.hackthebox.com/",
+  "desc": "Makine ve challenge'lar (ücretsiz katman)."
+ },
+ {
+  "cat": "video",
+  "level": "başlangıç",
+  "name": "LiveOverflow",
+  "url": "https://www.youtube.com/@LiveOverflow",
+  "desc": "Binary exploitation ve güvenlik araştırması videoları."
+ },
+ {
+  "cat": "video",
+  "level": "orta",
+  "name": "IppSec",
+  "url": "https://www.youtube.com/@ippsec",
+  "desc": "Hack The Box makinelerinin ayrıntılı çözümleri."
+ },
+ {
+  "cat": "video",
+  "level": "başlangıç",
+  "name": "John Hammond",
+  "url": "https://www.youtube.com/@_JohnHammond",
+  "desc": "CTF, zararlı yazılım ve araç videoları."
+ },
+ {
+  "cat": "video",
+  "level": "orta",
+  "name": "OALabs",
+  "url": "https://www.youtube.com/@OALabs",
+  "desc": "Pratik zararlı yazılım tersine mühendisliği."
+ },
+ {
+  "cat": "video",
+  "level": "orta",
+  "name": "stacksmashing",
+  "url": "https://www.youtube.com/@stacksmashing",
+  "desc": "Donanım hacking ve tersine mühendislik."
+ },
+ {
+  "cat": "video",
+  "level": "orta",
+  "name": "13Cubed",
+  "url": "https://www.youtube.com/@13Cubed",
+  "desc": "DFIR ve Windows adli analiz."
+ },
+ {
+  "cat": "video",
+  "level": "ileri",
+  "name": "MIT 6.858 Computer Systems Security",
+  "url": "https://ocw.mit.edu/courses/6-858-computer-systems-security-fall-2014/",
+  "desc": "MIT'nin bilgisayar sistemleri güvenliği dersi."
+ },
+ {
+  "cat": "video",
+  "level": "başlangıç",
+  "name": "Professor Messer",
+  "url": "https://www.professormesser.com/",
+  "desc": "Security+ ve Network+ için ücretsiz video dersler."
+ },
+ {
+  "cat": "reference",
+  "level": "orta",
+  "name": "CVE",
+  "url": "https://www.cve.org/",
+  "desc": "Kamuya açık güvenlik açıkları kataloğu."
+ },
+ {
+  "cat": "reference",
+  "level": "ileri",
+  "name": "NIST CSRC",
+  "url": "https://csrc.nist.gov/",
+  "desc": "NIST güvenlik standartları ve yayınları."
+ },
+ {
+  "cat": "reference",
+  "level": "orta",
+  "name": "awesome-reversing",
+  "url": "https://github.com/tylerha97/awesome-reversing",
+  "desc": "Tersine mühendislik kaynak listesi."
+ },
+ {
+  "cat": "reference",
+  "level": "orta",
+  "name": "awesome-malware-analysis",
+  "url": "https://github.com/rshipp/awesome-malware-analysis",
+  "desc": "Zararlı yazılım analizi kaynak listesi."
+ },
+ {
+  "cat": "reference",
+  "level": "başlangıç",
+  "name": "awesome-ctf",
+  "url": "https://github.com/apsdehal/awesome-ctf",
+  "desc": "CTF araç ve kaynak listesi."
+ }
+]
