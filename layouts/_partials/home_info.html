@@ -7,4 +7,9 @@
   <p class="bd-tag">{{ .Content | markdownify }}</p>
 </section>
 <script defer src="{{ "js/bd-hero.js" | relURL }}"></script>
+<section class="bd-top" hidden aria-labelledby="bd-top-title">
+  <h2 id="bd-top-title">Çok okunanlar</h2>
+  <ol></ol>
+</section>
+<script defer src="{{ "js/bd-top.js" | relURL }}"></script>
 {{- end -}}

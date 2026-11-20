@@ -155,6 +155,10 @@ export default {
       if (request.method === "POST") return createComment(request, env);
       return json({ error: "method_not_allowed" }, 405);
     }
+    if (url.pathname === "/api/views/top") {
+      const { results } = await env.DB.prepare("SELECT slug, count FROM views WHERE count > 0 ORDER BY count DESC, slug LIMIT 5").all();
+      return json({ top: results || [] });
+    }
     if (url.pathname === "/api/views") return views(request, env, url);
     if (url.pathname.startsWith("/api/")) return json({ error: "not_found" }, 404);
 

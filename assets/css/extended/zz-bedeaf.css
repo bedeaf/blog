@@ -209,3 +209,14 @@ code, pre, kbd, samp { font-family: var(--mono); }
 .comment-body pre { margin: 10px 0; padding: 10px 12px; background: #050505; overflow-x: auto; white-space: pre; }
 .comment-body pre code { background: none; padding: 0; font-size: 13px; line-height: 1.55; }
 .form-help code { font-family: var(--mono); font-size: .9em; background: var(--code-bg); padding: 0 4px; }
+
+/* most read */
+.bd-top { margin: 0 0 22px; padding: 14px 18px; background: var(--entry); }
+.bd-top h2 { margin: 0 0 8px; font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--secondary); }
+.bd-top ol { margin: 0; padding: 0; list-style: none; counter-reset: bd-top; }
+.bd-top li { display: flex; align-items: baseline; gap: 12px; padding: 6px 0; counter-increment: bd-top; }
+.bd-top li::before { content: "0x" counter(bd-top, bd-hex); color: #505050; font-size: 12px; font-variant-numeric: tabular-nums; min-width: 2.4em; }
+.bd-top a { flex: 1; min-width: 0; color: var(--primary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bd-top a:hover { color: #ffffff; }
+.bd-top-n { color: var(--secondary); font-size: 12px; font-variant-numeric: tabular-nums; }
+@media (max-width: 600px) { .bd-top { padding: 12px 14px; margin-bottom: 14px; } .bd-top li { padding: 5px 0; } }
